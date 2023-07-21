@@ -53,7 +53,7 @@
     @apply absolute left-0 h-fit w-full bg-primary-100 z-0 mt-24 rounded-2xl overflow-x-hidden overflow-y-auto
 }
 .playsongs {
-    @apply items-center bg-yellow-950 m-1 text-4xl cursor-pointer text-primary-100 rounded-xl
+    @apply items-center bg-yellow-950 m-1 text-4xl cursor-pointer text-primary-100 rounded-xl hover:scale-105 hover:pl-3
 }
 .progress-container {
     @apply relative bg-white rounded-md cursor-pointer my-3 mx-0 h-2 w-full
@@ -78,7 +78,7 @@
     @apply absolute left-[-6px] top-[-7px] w-[112px] h-5 appearance-none bg-transparent z-10
 }
 .slider input::-webkit-slider-thumb {
-    @apply w-5 h-5 bg-yellow-400 border-red-50 border-2 rounded-[50%] cursor-pointer appearance-none
+    @apply w-5 h-5 bg-orange-500 border-red-50 border-2 rounded-[50%] cursor-pointer appearance-none
 }
 .slider progress {
     @apply w-[100px] h-[6px] absolute top-0 left-0 rounded-[10px] overflow-hidden appearance-none
@@ -90,6 +90,6 @@
     @apply bg-yellow-500
 }
 .uploadBtn {
-    @apply cursor-pointer bg-yellow-950 p-1 text-2xl text-primary-100 rounded-full border-[1px] border-yellow-300
+    @apply cursor-pointer bg-yellow-950 p-1 text-2xl text-primary-100 rounded-full border-[1px] border-orange-500
 }
   
