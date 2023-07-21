@@ -46,21 +46,24 @@
     audio.loop === true ? audio.loop = false : audio.loop = true;
     }
     function prevAudio () {
-        songIndex = songIndex--
+        songIndex--
         if(songIndex < 0) {
             songIndex = tracks.length - 1
         }
+        audio.pause()
+        audio = new Audio(URL.createObjectURL(tracks[songIndex]));
         audio.play()
     }
     function nextAudio () {
-        songIndex = songIndex++
+        songIndex++
         if(songIndex > tracks.length - 1) {
             songIndex = 0
         } else {
             songIndex
         }
+        audio.pause()
+        audio = new Audio(URL.createObjectURL(tracks[songIndex]));
         audio.play()
-        
     }
     function updateProgress() {
         if (audio) {
@@ -89,7 +92,7 @@
 <img src="img/gramophone.png" alt="" class="gramophone" />
     <div class="music-container {isPlaying? 'play': ''}">
         <div class="music-info">
-            <h4 id="title"></h4>
+            <p class=" font-mono font-bold text-xl text-primary-100">{isPlaying? tracks[songIndex].name : ''}</p>
             <!-- <div class="current-time">{format(audio.currentTime)}</div><div class="total-duration">{format(audio.duration)}</div> -->
             <div class="progress-container">
                 <div class="progress"></div>
