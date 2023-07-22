@@ -27,18 +27,18 @@
     @apply w-[40%] absolute top-0 left-1/3 z-0
 }
 .action-btn {
-    @apply cursor-pointer text-xl p-3 my-0 mx-5 bg-yellow-950 rounded-full border-0 text-primary-100 hover:scale-125 hover:text-primary-200 focus:outline-none
+    @apply cursor-pointer text-xl p-3 my-0 mx-5 bg-yellow-950 rounded-full border-0 text-primary-100 hover:scale-125 hover:text-primary-200 focus:outline-none outline-none
 }
 .action-btn-big {
     @apply text-red-600 text-3xl
+}
+.like-btn {
+    @apply cursor-pointer z-10 p-3 my-0 mx-5 bg-transparent rounded-full border-0 text-red-600 hover:scale-105 hover:text-black focus:outline-none outline-none
 }
 .music-info {
     width: calc(100% - 40px);
     transition: transform 0.3s ease-in, opacity 0.3s ease-in;
     @apply absolute top-0 left-5 bg-slate-300 rounded-t-2xl p-3 pl-36 opacity-0 translate-y-0
-}
-.music-info h4 {
-    @apply m-0
 }
 .music-container.play .img-container img {
     animation-play-state: running;
@@ -52,8 +52,12 @@
 .playlist {
     @apply absolute left-0 h-fit w-full bg-primary-100 z-0 mt-24 rounded-2xl overflow-x-hidden overflow-y-auto
 }
+.playlist-elements {
+    animation: fadeIn 1s;
+    @apply flex overflow-hidden
+}
 .playsongs {
-    @apply items-center bg-yellow-950 m-1 text-4xl cursor-pointer text-primary-100 rounded-xl hover:scale-105 hover:pl-3
+    @apply flex items-center w-5/6 bg-yellow-950 m-1 text-4xl cursor-pointer text-primary-100 rounded-xl hover:scale-105 hover:pl-3
 }
 .progress-container {
     @apply relative bg-white rounded-md cursor-pointer my-3 mx-0 h-2 w-full
@@ -92,4 +96,7 @@
 .uploadBtn {
     @apply cursor-pointer bg-yellow-950 p-1 text-2xl text-primary-100 rounded-full border-[1px] border-orange-500
 }
-  
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
