@@ -15,7 +15,6 @@
         const files = event.target.files;
         tracks = [...tracks, ...files];
         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
-        console.log( tracks, "tracks");
     }
     function getTrack(track) {
         audio.pause();
@@ -74,7 +73,7 @@
             audio.currentTime = progress / 100 * audio.duration;
         }
     }
-	$: isPlaying? updateProgress() : null;
+	// $: isPlaying? updateProgress() : null;
 
     function updateProgress() {
 		duration = audio.duration;
@@ -93,30 +92,29 @@
 		if(currMins < 10) currMins = `0${currMins}`;
 		if(durMins < 10) durMins = `0${durMins}`;
 		
-		currTimeDisplay = `${currHrs}:${currMins}:${currSecs}`;
-		totalTimeDisplay = `${durHrs}:${durMins}:${durSecs}`;
-		
 		if (audio.ended) {
-			nextAudio();
+            nextAudio();
 		}
+        currTimeDisplay = `${currHrs}:${currMins}:${currSecs}`;
+        totalTimeDisplay = `${durHrs}:${durMins}:${durSecs}`;
     }
     function likeAudio () {
         isLiked = !isLiked;
     }
+    
 </script>	
 <player class="player">
 <img src="img/gramophone.png" alt="" class="gramophone" />
     <div class="music-container {isPlaying? 'play': ''}">
         <div class="music-info">
-            <p class=" font-mono font-bold text-xl text-primary-100" id="songTitle">{isPlaying? tracks[songIndex].name  : ''}</p>
+            <p class=" font-mono font-bold text-xl text-primary-100" id="songTitle">{isPlaying? tracks[songIndex].name : ''}</p>
             <div class="flex justify-between">
                 <span id="progress-time">{currTimeDisplay}</span>
                 <span id="track-duration">{totalTimeDisplay}</span>
             </div>
             <div class="progress-container">
-                <div class="progress"></div>
-                <input type="range" class="seek-slider" min={0} max={100} step={1} bind:value={progress} on:change={setProgress}>
-                <seek-slider />
+                <div class="progress" style="width: {progress}%"></div>
+                <input type="range" class="seek-slider" min={0} max={100} step={1} bind:value={progress} on:input={setProgress} on:timeupdate={() => updateProgress()}>
             </div>
         </div>
         <audio src='' id="audio" />
@@ -141,7 +139,7 @@
                     <i class="fas {volume > 0.7 && volume > 0 ? 'fa-volume-high' : 'fa-volume-low'} {volume === 0 ? 'fa-volume-xmark' : ''}"></i>
                 </button>
                 <div class="slider hidden group-hover:block" style="width: {volume * 100}%">
-                    <input type="range" min={0} max={1} step={0.01} bind:value={volume} on:change={volumeControl}>
+                    <input type="range" min={0} max={1} step={0.01} bind:value={volume} on:input={volumeControl}>
                 </div>
             </div>
             <label for="upload" class="uploadBtn">Select songs</label>
@@ -153,7 +151,6 @@
                     <div class="playsongs" on:pointerdown={()=>{getTrack(track)}}>
                         {track.name}
                     </div>
-                    <p></p>
                     <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart like-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
                 </div>
             {/each}
