@@ -10,11 +10,15 @@
     let totalTimeDisplay = "loading...";
 	let currTimeDisplay = "0:00:00";
     let progress: number = 0;
+    let searchText: string = '';
+    let filteredPlaylist = tracks.filter(filterTracks);
+
 
     function handleFileInput(event) {
         const files = event.target.files;
         tracks = [...tracks, ...files];
         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
+        console.log(tracks);
     }
     function getTrack(track) {
         audio.pause();
@@ -98,10 +102,15 @@
         currTimeDisplay = `${currHrs}:${currMins}:${currSecs}`;
         totalTimeDisplay = `${durHrs}:${durMins}:${durSecs}`;
     }
+    function filterTracks(filteredTrack) {
+    return filteredTrack.name.toLowerCase().includes(searchText.toLowerCase());
+  }
     function likeAudio () {
         isLiked = !isLiked;
     }
-    
+    function deleteTrack(track) {
+    tracks = tracks.filter(t => t !== track);
+    }
 </script>	
 <player class="player">
 <img src="img/gramophone.png" alt="" class="gramophone" />
@@ -146,14 +155,30 @@
             <input multiple type="file" class="hidden" id="upload" on:change={handleFileInput} accept="audio/*"/>
         </div>
         <div class="playlist">
+            <div class="flex justify-center rounded-3xl bg-red-700 h-7">
+            <input type="text" id="search-input" class="w-1/2 text-center rounded-3xl focus:outline-none bg-primary-100 text-yellow-950 placeholder-yellow-950" bind:value={searchText} placeholder="🔎Search by track name" />
+            </div>
             {#each tracks as track }
-                <div class="playlist-elements">
-                    <div class="playsongs" on:pointerdown={()=>{getTrack(track)}}>
-                        {track.name}
-                    </div>
-                    <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart like-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
+            <div class="playlist-elements">
+                <div class="playsongs" on:pointerdown={()=>{getTrack(track)}}>
+                    <span>{track.name}</span>
+                </div>
+                {track.size}
+                <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart playlist-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
+                <button class="fa-solid fa-xmark playlist-btn" on:click={() => deleteTrack(track)}></button>
+            </div>
+            {/each}
+            {#if filteredPlaylist.length > 0}
+            {#each filteredPlaylist as filteredTrack (filteredTrack.name)}
+                <div class="playsongs" on:click={() => getTrack(filteredTrack)}>
+                    <span>{filteredTrack.name}</span>
+                    <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart playlist-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
+                    <button class="fa-solid fa-xmark playlist-btn" on:click={() => deleteTrack(filteredTrack)}></button>
                 </div>
             {/each}
+            {:else}
+            <p>No tracks found.</p>
+            {/if}
         </div>
     </div>
 </player> 

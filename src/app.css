@@ -32,8 +32,8 @@
 .action-btn-big {
     @apply text-red-600 text-3xl
 }
-.like-btn {
-    @apply cursor-pointer z-10 p-3 my-0 mx-5 bg-transparent rounded-full border-0 text-red-600 hover:scale-105 hover:text-black focus:outline-none outline-none
+.playlist-btn {
+    @apply cursor-pointer z-10 p-3 my-0 bg-transparent rounded-full border-0 text-red-600 hover:scale-105 hover:text-black focus:outline-none outline-none
 }
 .music-info {
     width: calc(100% - 40px);
@@ -50,14 +50,18 @@
     @apply opacity-100 -translate-y-full
 }
 .playlist {
-    @apply absolute left-0 h-fit w-full bg-primary-100 z-0 mt-24 rounded-2xl overflow-x-hidden overflow-y-auto
+    @apply absolute left-0 h-fit w-full bg-primary-100 z-0 mt-[90px] rounded-2xl overflow-x-hidden overflow-y-auto
 }
 .playlist-elements {
     animation: fadeIn 1s;
     @apply flex overflow-hidden
 }
 .playsongs {
-    @apply flex items-center w-5/6 bg-yellow-950 m-1 text-4xl cursor-pointer text-primary-100 rounded-xl hover:scale-105 hover:pl-3
+    @apply relative w-9/12 bg-yellow-950 m-1 cursor-pointer text-primary-100 rounded-xl hover:scale-105 hover:pl-3 overflow-hidden
+}
+.playsongs span {
+    animation: playsongs1 10s ease-in-out forwards infinite;
+    @apply inline-block min-w-full whitespace-nowrap text-5xl
 }
 .progress-container {
     @apply relative bg-white rounded-md cursor-pointer my-3 mx-0 h-2 w-full
@@ -99,4 +103,8 @@
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
+  }
+@keyframes playsongs1 {
+    from {transform: translateX(0);     margin-left: 0;}
+    to   {transform: translateX(-100%); margin-left: 100%; }
   }
