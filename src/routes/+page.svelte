@@ -5,6 +5,7 @@
     let isPlaying: boolean = false;
     let isLooped: boolean = false;
     let isLiked: boolean = false;
+    let isMuted: boolean = false;
     let volume: number = 0.5;
     let duration: number;
     let totalTimeDisplay = "loading...";
@@ -12,43 +13,35 @@
     let progress: number = 0;
     let searchText: string = '';
     let filteredPlaylist = tracks.filter(filterTracks);
+    $: isPlaying? updateProgress() : null;
 
-
-    function handleFileInput(event) {
+    function handleFileInput(event: { target: { files: any; }; }) {
         const files = event.target.files;
         tracks = [...tracks, ...files];
         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
-        console.log(tracks);
-    }
-    function getTrack(track) {
+    };
+
+    function getTrack(track: Blob | MediaSource) {
         audio.pause();
-        isPlaying = !isPlaying;
-        if(isPlaying === false) {
-            isPlaying = true;
-        }
         audio = new Audio(URL.createObjectURL(track));
-        isPlaying? audio.play() : audio.pause();
-        audio.play();
-    }
+    };
+
     function playPauseAudio() {
-        audio === null ? null : 
         isPlaying = !isPlaying;
-        isPlaying? audio.play() : audio.pause();
-    }
-    function volumeControl() {
-        if (audio) {
-            audio.volume = volume;
-        }
-    }
-    function muteAudio() {
-        audio.volume > 0 ? (audio.volume = 0) : (audio.volume = 0.5);
-        volume = audio.volume;
-    }
-    function loopAudio () {
+        isPlaying ? audio.play() : audio.pause();
+    };
+
+    function loopAudio() {
         isLooped = !isLooped;
-        audio.loop === true ? audio.loop = false : audio.loop = true;
-    }
-    function prevAudio () {
+        isLooped ? audio.loop = true : audio.loop = false;
+    };
+    
+    function muteAudio() {
+        isMuted = !isMuted;
+        isMuted ? audio.muted = true : audio.muted = false;
+    };
+
+    function prevAudio() {
         songIndex--;
         if(songIndex < 0) {
             songIndex = tracks.length - 1;
@@ -59,8 +52,9 @@
         audio.pause();
         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
         audio.play();
-    }
-    function nextAudio () {
+    };
+
+    function nextAudio() {
         songIndex++;
         if(songIndex > tracks.length - 1) {
             songIndex = 0;
@@ -71,14 +65,19 @@
         }
         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
         audio.play();
-    }
+    };
+
     function setProgress() {
         if (audio) {
             audio.currentTime = progress / 100 * audio.duration;
         }
-    }
-	// $: isPlaying? updateProgress() : null;
-
+    };
+    // function volumeControl() {
+    //     if (audio) {
+    //         audio.volume = volume;
+    //     }
+    // };
+    
     function updateProgress() {
 		duration = audio.duration;
         progress = audio.currentTime * (100 / duration);
@@ -101,84 +100,80 @@
 		}
         currTimeDisplay = `${currHrs}:${currMins}:${currSecs}`;
         totalTimeDisplay = `${durHrs}:${durMins}:${durSecs}`;
-    }
+    };
+    
     function filterTracks(filteredTrack) {
-    return filteredTrack.name.toLowerCase().includes(searchText.toLowerCase());
-  }
-    function likeAudio () {
+        return filteredTrack.name.toLowerCase().includes(searchText.toLowerCase());
+    };
+
+    function likeAudio() {
         isLiked = !isLiked;
-    }
-    function deleteTrack(track) {
-    tracks = tracks.filter(t => t !== track);
-    }
+    };
+
+    function deleteTrack(track: File) {
+        tracks = tracks.filter(t => t !== track);
+    };
 </script>	
-<player class="player">
-<img src="img/gramophone.png" alt="" class="gramophone" />
-    <div class="music-container {isPlaying? 'play': ''}">
-        <div class="music-info">
-            <p class=" font-mono font-bold text-xl text-primary-100" id="songTitle">{isPlaying? tracks[songIndex].name : ''}</p>
-            <div class="flex justify-between">
-                <span id="progress-time">{currTimeDisplay}</span>
-                <span id="track-duration">{totalTimeDisplay}</span>
-            </div>
-            <div class="progress-container">
+<player class="flex">
+<img src="img/background.jpg" alt="" class="w-full h-full absolute left-0 top-0 z-0" />
+    <navigation class="flex justify-between bottom-0 left-0 w-full z-[1] mb-0">
+        <button on:click={prevAudio} class="action-btn">
+            <i class="fas fa-backward"></i>
+        </button>
+        <button on:click={playPauseAudio} class="action-btn action-btn-big">
+            <i class="fas {isPlaying? 'fa-pause' : 'fa-play'}"></i>
+        </button>
+        <button on:click={nextAudio} class="action-btn">
+            <i class="fas fa-forward"></i>
+        </button>
+        <div class="w-2/3">
+            <div class="flex flex-col">
+                <span class=" max-w-xl font-mono font-bold text-xl text-red-600">{isPlaying? tracks[songIndex].name : ''}</span>
+                <span class="text-white font-mono font-bold" >{currTimeDisplay} {totalTimeDisplay}</span>
+            </div> 
+            <div class="relative bg-white rounded-md cursor-pointer my-3 mx-0 h-2 w-full">
                 <div class="progress" style="width: {progress}%"></div>
                 <input type="range" class="seek-slider" min={0} max={100} step={1} bind:value={progress} on:input={setProgress} on:timeupdate={() => updateProgress()}>
             </div>
         </div>
-        <audio src='' id="audio" />
-        <div class="img-container">
-            <img src="img/vinyl_disk.png" alt="music_cover" id="cover">
-        </div>
-        <div class="navigation">
-            <button id="prev" class="action-btn" on:click={prevAudio}>
-                <i class="fas fa-backward"></i>
+        <button on:click={loopAudio} class="action-btn">
+            <i class="fas {isLooped === true ? 'fa-arrows-rotate text-red-600 scale-150 ' : 'fa-arrows-rotate'}"></i>
+        </button>
+        <div class="Volume ">
+            <button on:click={muteAudio} class="action-btn">
+                <i class="fas {volume > 0.7 && volume > 0 ? 'fa-volume-high' : 'fa-volume-low'} {volume === 0 ? 'fa-volume-xmark' : ''}"></i>
             </button>
-            <button id="play" class="action-btn action-btn-big" on:click={playPauseAudio}>
-                <i class="fas {isPlaying? 'fa-pause' : 'fa-play'}"></i>
-            </button>
-            <button id="next" class="action-btn" on:click={nextAudio}>
-                <i class="fas fa-forward"></i>
-            </button> 
-            <button id="loop" class="action-btn" on:click={loopAudio}>
-                <i class="fas {isLooped === true ? 'fa-arrows-rotate text-red-600 scale-150 ' : 'fa-arrows-rotate'}"></i>
-            </button>
-            <div class="Volume group">
-                <button id="mute" class="action-btn" on:click={muteAudio}>
-                    <i class="fas {volume > 0.7 && volume > 0 ? 'fa-volume-high' : 'fa-volume-low'} {volume === 0 ? 'fa-volume-xmark' : ''}"></i>
-                </button>
-                <div class="slider hidden group-hover:block" style="width: {volume * 100}%">
-                    <input type="range" min={0} max={1} step={0.01} bind:value={volume} on:input={volumeControl}>
-                </div>
+            <div class="slider" style="width: {volume * 100}%">
+                <input type="range" min={0} max={1} step={0.01} bind:value={volume} on:input={(e)=>{ audio.volume = e.target.value}}>
             </div>
-            <label for="upload" class="uploadBtn">Select songs</label>
-            <input multiple type="file" class="hidden" id="upload" on:change={handleFileInput} accept="audio/*"/>
         </div>
-        <div class="playlist">
-            <div class="flex justify-center rounded-3xl bg-red-700 h-7">
-            <input type="text" id="search-input" class="w-1/2 text-center rounded-3xl focus:outline-none bg-primary-100 text-yellow-950 placeholder-yellow-950" bind:value={searchText} placeholder="🔎Search by track name" />
+        <label for="upload" class="action-btn fa-solid fa-plus"></label>
+        <input multiple type="file" class="hidden" id="upload" on:change={handleFileInput} accept="audio/*"/>
+    </navigation>
+    <div class="playlist">
+        <div class="flex justify-center rounded-3xl bg-red-700 h-7">
+        <input bind:value={searchText} type="text" id="search-input" class="w-1/2 text-center rounded-3xl focus:outline-none bg-gray-950 text-white placeholder-white" placeholder="🔎Search by track name" />
+        </div>
+        {#each tracks as track }
+        <div class="playlist-elements">
+            <div on:pointerdown={()=>{getTrack(track)}} class="playsongs">
+                <span>{track.name}</span>
             </div>
-            {#each tracks as track }
-            <div class="playlist-elements">
-                <div class="playsongs" on:pointerdown={()=>{getTrack(track)}}>
-                    <span>{track.name}</span>
-                </div>
-                {track.size}
+            <span class="flex items-center justify-center text-white font-mono font-bold">{track.size}</span>
+            <button on:click={likeAudio} class="fa-{isLiked? 'solid' : 'regular'} fa-heart action-btn {isLiked? 'text-4xl' : 'text-3xl'}"></button>
+            <button on:click={() => deleteTrack(track)} class="fa-solid fa-xmark action-btn"></button>
+        </div>
+        {/each}
+        <!-- {#if filteredPlaylist.length > 0}
+        {#each filteredPlaylist as filteredTrack (filteredTrack.name)}
+            <div class="playsongs" on:click={() => getTrack(filteredTrack)}>
+                <span>{filteredTrack.name}</span>
                 <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart playlist-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
-                <button class="fa-solid fa-xmark playlist-btn" on:click={() => deleteTrack(track)}></button>
+                <button class="fa-solid fa-xmark playlist-btn" on:click={() => deleteTrack(filteredTrack)}></button>
             </div>
-            {/each}
-            {#if filteredPlaylist.length > 0}
-            {#each filteredPlaylist as filteredTrack (filteredTrack.name)}
-                <div class="playsongs" on:click={() => getTrack(filteredTrack)}>
-                    <span>{filteredTrack.name}</span>
-                    <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart playlist-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
-                    <button class="fa-solid fa-xmark playlist-btn" on:click={() => deleteTrack(filteredTrack)}></button>
-                </div>
-            {/each}
-            {:else}
-            <p>No tracks found.</p>
-            {/if}
-        </div>
+        {/each}
+        {:else}
+        <p>No tracks found.</p>
+        {/if} -->
     </div>
 </player> 
