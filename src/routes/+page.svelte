@@ -2,20 +2,22 @@
     let tracks: File[] = [];
     let songIndex: number = 0;
     let audio: HTMLAudioElement;
-    let isPlaying: boolean = false;
+    let isLoaded: boolean = false;
     let isLooped: boolean = false;
     let isLiked: boolean = false;
     let isMuted: boolean = false;
+    let isPlaying: boolean = false;
     let volume: number = 0.5;
     let duration: number;
-    let totalTimeDisplay = "loading...";
-	let currTimeDisplay = "0:00:00";
+    let totalTimeDisplay = "";
+	let currTimeDisplay = "";
     let progress: number = 0;
     let searchText: string = '';
     let filteredPlaylist = tracks.filter(filterTracks);
     $: isPlaying? updateProgress() : null;
 
     function handleFileInput(event: { target: { files: any; }; }) {
+        isLoaded = !isLoaded;
         const files = event.target.files;
         tracks = [...tracks, ...files];
         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
@@ -39,6 +41,7 @@
     function muteAudio() {
         isMuted = !isMuted;
         isMuted ? audio.muted = true : audio.muted = false;
+        isMuted ? volume = 0 : volume = 0.5;
     };
 
     function prevAudio() {
@@ -116,7 +119,7 @@
 </script>	
 <player class="flex">
 <img src="img/background.jpg" alt="" class="w-full h-full absolute left-0 top-0 z-0" />
-    <navigation class="flex justify-between bottom-0 left-0 w-full z-[1] mb-0">
+    <navigation class="flex justify-between w-full z-[1] mb-0">
         <button on:click={prevAudio} class="action-btn">
             <i class="fas fa-backward"></i>
         </button>
@@ -128,8 +131,10 @@
         </button>
         <div class="w-2/3">
             <div class="flex flex-col">
-                <span class=" max-w-xl font-mono font-bold text-xl text-red-600">{isPlaying? tracks[songIndex].name : ''}</span>
-                <span class="text-white font-mono font-bold" >{currTimeDisplay} {totalTimeDisplay}</span>
+                <span class=" max-w-xl font-mono font-bold text-xl text-red-600">{isLoaded? tracks[songIndex].name : ''}</span>
+                <div class="flex justify-between text-white font-mono font-bold" >
+                    <span>{currTimeDisplay}</span> <span>{totalTimeDisplay}</span>
+                </div>
             </div> 
             <div class="relative bg-white rounded-md cursor-pointer my-3 mx-0 h-2 w-full">
                 <div class="progress" style="width: {progress}%"></div>
@@ -154,7 +159,7 @@
         <div class="flex justify-center rounded-3xl bg-red-700 h-7">
         <input bind:value={searchText} type="text" id="search-input" class="w-1/2 text-center rounded-3xl focus:outline-none bg-gray-950 text-white placeholder-white" placeholder="🔎Search by track name" />
         </div>
-        {#each tracks as track }
+        {#each tracks as track}
         <div class="playlist-elements">
             <div on:pointerdown={()=>{getTrack(track)}} class="playsongs">
                 <span>{track.name}</span>
@@ -165,7 +170,7 @@
         </div>
         {/each}
         <!-- {#if filteredPlaylist.length > 0}
-        {#each filteredPlaylist as filteredTrack (filteredTrack.name)}
+        {#each filteredPlaylist as filteredTrack}
             <div class="playsongs" on:click={() => getTrack(filteredTrack)}>
                 <span>{filteredTrack.name}</span>
                 <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart playlist-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
