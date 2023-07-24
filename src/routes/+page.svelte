@@ -1,5 +1,6 @@
 <script lang="ts">
     let tracks: File[] = [];
+    let likedtracks: File[] = [];
     let songIndex: number = 0;
     let audio: HTMLAudioElement;
     let isLoaded: boolean = false;
@@ -14,8 +15,18 @@
     let progress: number = 0;
     let searchText: string = '';
     let filteredPlaylist = tracks.filter(filterTracks);
+    let form = {
+    searchString: ''
+    };
+    let searchString = '';
     $: isPlaying? updateProgress() : null;
+    $: tracks = tracks.filter((track) => {
+    return track.name.toLowerCase().includes(searchString.toLowerCase());
+  })
 
+    const submitSearch = (e: Event) => {
+    searchString = form.searchString
+  }
     function handleFileInput(event: { target: { files: any; }; }) {
         isLoaded = !isLoaded;
         const files = event.target.files;
@@ -105,21 +116,22 @@
         totalTimeDisplay = `${durHrs}:${durMins}:${durSecs}`;
     };
     
-    function filterTracks(filteredTrack) {
-        return filteredTrack.name.toLowerCase().includes(searchText.toLowerCase());
+    function filterTracks(track) {
+        return track.name.toLowerCase().includes(searchText.toLowerCase());
     };
 
-    function likeAudio() {
+    function likeAudio(track: File) {
         isLiked = !isLiked;
+        likedtracks = tracks.push(track);
     };
 
     function deleteTrack(track: File) {
         tracks = tracks.filter(t => t !== track);
     };
 </script>	
-<player class="flex">
+<player class="flex overflow-hidden">
 <img src="img/background.jpg" alt="" class="w-full h-full absolute left-0 top-0 z-0" />
-    <navigation class="flex justify-between w-full z-[1] mb-0">
+    <navigation class="flex justify-between absolute bottom-0 w-full z-[1] mb-4 px-1">
         <button on:click={prevAudio} class="action-btn">
             <i class="fas fa-backward"></i>
         </button>
@@ -131,7 +143,7 @@
         </button>
         <div class="w-2/3">
             <div class="flex flex-col">
-                <span class=" max-w-xl font-mono font-bold text-xl text-red-600">{isLoaded? tracks[songIndex].name : ''}</span>
+                <span class=" max-w-xl font-mono font-bold text-xl text-red-600">{isPlaying? tracks[songIndex].name : ''}</span>
                 <div class="flex justify-between text-white font-mono font-bold" >
                     <span>{currTimeDisplay}</span> <span>{totalTimeDisplay}</span>
                 </div>
@@ -157,7 +169,29 @@
     </navigation>
     <div class="playlist">
         <div class="flex justify-center rounded-3xl bg-red-700 h-7">
-        <input bind:value={searchText} type="text" id="search-input" class="w-1/2 text-center rounded-3xl focus:outline-none bg-gray-950 text-white placeholder-white" placeholder="🔎Search by track name" />
+            <form on:submit={submitSearch} class="w-1/2 text-center rounded-3xl focus:outline-none bg-gray-950 text-white">
+                <input type="search" bind:value={form.searchString}
+                class="w-9/12 text-center rounded-3xl focus:outline-none bg-gray-950 text-white placeholder-white" 
+                placeholder="Search by a track name"
+                aria-label="Search"
+                aria-describedby="button-addon1" />
+                <button
+                    class=""
+                    type="submit"
+                    id="search_button"
+                    data-te-ripple-init
+                    data-te-ripple-color="light">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        class="h-5 w-5">
+                        <path
+                        fill-rule="evenodd"
+                        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                        clip-rule="evenodd" />
+                    </svg>
+                </button>
         </div>
         {#each tracks as track}
         <div class="playlist-elements">
@@ -165,20 +199,12 @@
                 <span>{track.name}</span>
             </div>
             <span class="flex items-center justify-center text-white font-mono font-bold">{track.size}</span>
-            <button on:click={likeAudio} class="fa-{isLiked? 'solid' : 'regular'} fa-heart action-btn {isLiked? 'text-4xl' : 'text-3xl'}"></button>
+            <button on:click={() => likeAudio(track)} class="fa-{isLiked? 'solid' : 'regular'} fa-heart action-btn {isLiked? 'text-4xl' : 'text-3xl'}"></button>
             <button on:click={() => deleteTrack(track)} class="fa-solid fa-xmark action-btn"></button>
         </div>
         {/each}
-        <!-- {#if filteredPlaylist.length > 0}
-        {#each filteredPlaylist as filteredTrack}
-            <div class="playsongs" on:click={() => getTrack(filteredTrack)}>
-                <span>{filteredTrack.name}</span>
-                <button class="fa-{isLiked? 'solid' : 'regular'} fa-heart playlist-btn {isLiked? 'text-4xl' : 'text-3xl'}" on:click={likeAudio}></button>
-                <button class="fa-solid fa-xmark playlist-btn" on:click={() => deleteTrack(filteredTrack)}></button>
-            </div>
+        {#each likedtracks as likedtrack}
+        <span class="text-white text-6xl">{likedtrack.name}</span>
         {/each}
-        {:else}
-        <p>No tracks found.</p>
-        {/if} -->
     </div>
 </player> 

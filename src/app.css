@@ -10,7 +10,7 @@
     @apply text-red-600 text-3xl
 }
 .playlist {
-    @apply absolute left-0 h-fit w-full bg-gray-950 z-0 mt-[90px] rounded-2xl overflow-x-hidden overflow-y-auto
+    @apply absolute left-0 h-fit w-full bg-gray-950 z-0 mt-0 rounded-2xl overflow-x-hidden overflow-y-auto
 }
 .playlist-elements {
     animation: fadeIn 1s;
