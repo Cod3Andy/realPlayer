@@ -22,40 +22,41 @@
     $: isPlaying? updateProgress() : null;
     $: tracks = tracks.filter((track) => {
     return track.name.toLowerCase().includes(searchString.toLowerCase());
-  })
+  });
 
     const submitSearch = (e: Event) => {
-    searchString = form.searchString
-  }
-    function handleFileInput(event: { target: { files: any; }; }) {
+    searchString = form.searchString;
+  };
+
+    function handleFileInput(event: { target: { files: any; }; }){
         isLoaded = !isLoaded;
         const files = event.target.files;
         tracks = [...tracks, ...files];
         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
     };
 
-    function getTrack(track: Blob | MediaSource) {
+    function getTrack(track: Blob | MediaSource){
         audio.pause();
         audio = new Audio(URL.createObjectURL(track));
     };
 
-    function playPauseAudio() {
+    function playPauseAudio(){
         isPlaying = !isPlaying;
         isPlaying ? audio.play() : audio.pause();
     };
 
-    function loopAudio() {
+    function loopAudio(){
         isLooped = !isLooped;
         isLooped ? audio.loop = true : audio.loop = false;
     };
     
-    function muteAudio() {
+    function muteAudio(){
         isMuted = !isMuted;
         isMuted ? audio.muted = true : audio.muted = false;
         isMuted ? volume = 0 : volume = 0.5;
     };
 
-    function prevAudio() {
+    function prevAudio(){
         songIndex--;
         if(songIndex < 0) {
             songIndex = tracks.length - 1;
@@ -68,7 +69,7 @@
         audio.play();
     };
 
-    function nextAudio() {
+    function nextAudio(){
         songIndex++;
         if(songIndex > tracks.length - 1) {
             songIndex = 0;
@@ -81,18 +82,13 @@
         audio.play();
     };
 
-    function setProgress() {
+    function setProgress(){
         if (audio) {
             audio.currentTime = progress / 100 * audio.duration;
         }
     };
-    // function volumeControl() {
-    //     if (audio) {
-    //         audio.volume = volume;
-    //     }
-    // };
     
-    function updateProgress() {
+    function updateProgress(){
 		duration = audio.duration;
         progress = audio.currentTime * (100 / duration);
 
@@ -116,21 +112,21 @@
         totalTimeDisplay = `${durHrs}:${durMins}:${durSecs}`;
     };
     
-    function filterTracks(track) {
+    function filterTracks(track){
         return track.name.toLowerCase().includes(searchText.toLowerCase());
     };
 
-    function likeAudio(track: File) {
+    function likeAudio(track: File){
         isLiked = !isLiked;
         likedtracks = tracks.push(track);
     };
 
-    function deleteTrack(track: File) {
+    function deleteTrack(track: File){
         tracks = tracks.filter(t => t !== track);
     };
 </script>	
 <player class="flex overflow-hidden">
-<img src="img/background.jpg" alt="" class="w-full h-full absolute left-0 top-0 z-0" />
+<div class="w-full h-full absolute left-0 top-0 z-0 bg-gray-950" />
     <navigation class="flex justify-between absolute bottom-0 w-full z-[1] mb-4 px-1">
         <button on:click={prevAudio} class="action-btn">
             <i class="fas fa-backward"></i>
@@ -169,29 +165,29 @@
     </navigation>
     <div class="playlist">
         <div class="flex justify-center rounded-3xl bg-red-700 h-7">
-            <form on:submit={submitSearch} class="w-1/2 text-center rounded-3xl focus:outline-none bg-gray-950 text-white">
-                <input type="search" bind:value={form.searchString}
-                class="w-9/12 text-center rounded-3xl focus:outline-none bg-gray-950 text-white placeholder-white" 
-                placeholder="Search by a track name"
-                aria-label="Search"
-                aria-describedby="button-addon1" />
-                <button
-                    class=""
-                    type="submit"
-                    id="search_button"
-                    data-te-ripple-init
-                    data-te-ripple-color="light">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        class="h-5 w-5">
-                        <path
-                        fill-rule="evenodd"
-                        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                        clip-rule="evenodd" />
-                    </svg>
-                </button>
+        <form on:submit={submitSearch} class="w-1/2 text-center rounded-3xl focus:outline-none bg-gray-950 text-white">
+            <input type="search" bind:value={form.searchString}
+            class="w-9/12 text-center rounded-3xl focus:outline-none bg-gray-950 text-white placeholder-white" 
+            placeholder="Search by a track name"
+            aria-label="Search"
+            aria-describedby="button-addon1" />
+            <button
+                class=""
+                type="submit"
+                id="search_button"
+                data-te-ripple-init
+                data-te-ripple-color="light">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="h-5 w-5">
+                    <path
+                    fill-rule="evenodd"
+                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                    clip-rule="evenodd" />
+                </svg>
+            </button>
         </div>
         {#each tracks as track}
         <div class="playlist-elements">
@@ -204,7 +200,7 @@
         </div>
         {/each}
         {#each likedtracks as likedtrack}
-        <span class="text-white text-6xl">{likedtrack.name}</span>
+            <span class="text-white text-6xl">{likedtrack.name}</span>
         {/each}
     </div>
 </player> 
