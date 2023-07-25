@@ -126,29 +126,29 @@
 <player class="flex overflow-hidden justify-center font-rubik">
 <div class="w-full h-full absolute left-0 top-0 z-0 bg-[#2d2e37]" />
     <navigation class="flex justify-between items-center absolute bottom-0 w-11/12 h-20 z-[1] mb-4 px-1 bg-[#1a195c] rounded-2xl opacity-80">
-        <div class="w-[150px] pl-2">
-            <button on:click={prevAudio} class="cursor-pointer text-md p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
+        <div class="w-[160px] pl-2 max-[840px]:absolute max-[840px]:left-[360px] max-[769px]:left-[270px] max-sm:left-[170px] max-[414px]:left-[100px] max-[280px]:left-[50px]">
+            <button on:click={prevAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
                 <i class="fas fa-backward"></i>
             </button>
-            <button on:click={playPauseAudio} class="action-btn action-btn-big">
-                <div class="bg-white rounded-full px-4 py-[10px] hover:shadow-inner shadow-sm">
+            <button on:click={playPauseAudio} class="action-btn action-btn-big p-0 m-0">
+                <div class="bg-[#fcfcff] border-0 rounded-full px-[18px] py-[10px] m-0 shadow-[0px_0px_15px_0px_rgba(255,255,255,0.5)]">
                     <i class="fas {isPlaying? 'fa-pause' : 'fa-play'}"></i>
                 </div>
             </button>
-            <button on:click={nextAudio} class="cursor-pointer text-md p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
+            <button on:click={nextAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
                 <i class="fas fa-forward"></i>
             </button>
         </div>
-        <div  class=" w-1/5 font-bold text-xl text-[#fcfcff] overflow-hidden">{isPlaying? tracks[songIndex].name : ''}</div>
-        <label for="upload" class="action-btn fa-solid fa-plus"></label>
+        <div  class=" w-1/5 font-bold text-xl text-[#fcfcff] overflow-hidden max-sm:hidden">{isPlaying? tracks[songIndex].name : ''}</div>
+        <label for="upload" class="action-btn fa-solid fa-plus max-[414px]:absolute max-[414px]:left-[10px]"></label>
         <input multiple type="file" class="hidden" id="upload" on:change={handleFileInput} accept="audio/*"/>
         <div class="w-2/5">
-            <div class="flex flex-col">
+            <div class="flex flex-col max-[840px]:hidden">
                 <div class="flex justify-between text-[#fcfcff] font-bold" >
                     <span>{currTimeDisplay}</span> <span>{totalTimeDisplay}</span>
                 </div>
             </div> 
-            <div class="relative max-lg:hidden max-lg: bg-[#fcfcff] rounded-md cursor-pointer my-3 mx-0 h-2 w-full">
+            <div class="relative max-[840px]:hidden max-[840px]: bg-[#fcfcff] rounded-md cursor-pointer my-3 mx-0 h-2 w-full">
                 <div class="progress" style="width: {progress}%"></div>
                 <input type="range" class="seek-slider" min={0} max={100} step={1} bind:value={progress} on:input={setProgress} on:timeupdate={() => updateProgress()}>
             </div>
@@ -156,7 +156,7 @@
         <button on:click={loopAudio} class="action-btn">
             <i class="fas {isLooped === true ? 'fa-arrows-rotate text-red-600 scale-150 ' : 'fa-arrows-rotate'}"></i>
         </button>
-        <div class="pt-[10px]">
+        <div class="pt-[10px] max-[414px]:hidden">
             <button on:click={muteAudio} class="action-btn w-[49px]">
                 <i class="fas {volume > 0.7 && volume > 0 ? 'fa-volume-high' : 'fa-volume-low'} {volume === 0 ? 'fa-volume-xmark' : ''}"></i>
             </button>

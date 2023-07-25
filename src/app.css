@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .action-btn {
-    @apply cursor-pointer text-xl p-3 my-0 mx-2 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none
+    @apply cursor-pointer text-xl p-3 my-0 mx-2 bg-transparent rounded-full border-0 text-white hover:scale-110 hover:text-gray-950 focus:outline-none outline-none
 }
 .action-btn-big {
     @apply text-black text-3xl
@@ -15,7 +15,7 @@
 }
 .playlist-elements {
     animation: fadeIn 1s;
-    @apply flex overflow-hidden list-decimal
+    @apply flex justify-between overflow-hidden list-decimal
 }
 .playsongs {
     @apply relative w-9/12 bg-transparent m-1 cursor-pointer text-white rounded-xl font-rubik overflow-hidden float-left
