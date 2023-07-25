@@ -1,139 +1,148 @@
 <script lang="ts">
-    import { space } from "postcss/lib/list";
+import PlayerUI from "$lib/PlayerUI.svelte";
 
-    let tracks: File[] = [];
-    let likedtracks: File[] = [];
-    let songIndex: number = 0;
-    let audio: HTMLAudioElement;
-    let isLoaded: boolean = false;
-    let isLooped: boolean = false;
-    let isLiked: boolean = false;
-    let isMuted: boolean = false;
-    let isPlaying: boolean = false;
-    let volume: number = 0.5;
-    let duration: number;
-    let totalTimeDisplay = "";
-	let currTimeDisplay = "";
-    let progress: number = 0;
-    let searchText: string = '';
-    let filteredPlaylist = tracks.filter(filterTracks);
-    let form = {
-    searchString: ''
-    };
-    let searchString = '';
-    $: isPlaying? updateProgress() : null;
-    $: tracks = tracks.filter((track) => {
-    return track.name.toLowerCase().includes(searchString.toLowerCase());
-  });
+//     let tracks: File[] = [];
+//     let likedtracks: File[] = [];
+//     let songIndex: number = 0;
+//     let audio: HTMLAudioElement;
+//     let isLoaded: boolean = false;
+//     let isLooped: boolean = false;
+//     let isLiked: boolean = false;
+//     let isMuted: boolean = false;
+//     let isPlaying: boolean = false;
+//     let volume: number = 0.5;
+//     let duration: number;
+//     let totalTimeDisplay = "";
+// 	let currTimeDisplay = "";
+//     let progress: number = 0;
+//     let searchText: string = '';
+//     let songNumber: number = 1;
+//     let filteredPlaylist = tracks.filter(filterTracks);
+//     let form = {
+//     searchString: ''
+//     };
+//     let searchString = '';
+//     $: isPlaying ? updateProgress() : null;
+//     $: tracks = tracks.filter((track) => {
+//     return track.name.toLowerCase().includes(searchString.toLowerCase());
+//   });
 
-    const submitSearch = (e: Event) => {
-    searchString = form.searchString;
-  };
+//     const submitSearch = (e: Event) => {
+//     searchString = form.searchString;
+//   };
 
-    function handleFileInput(event: { target: { files: any; }; }){
-        isLoaded = !isLoaded;
-        const files = event.target.files;
-        tracks = [...tracks, ...files];
-        audio = new Audio(URL.createObjectURL(tracks[songIndex]));
-    };
+//     function handleFileInput(event: { target: { files: any; }; }){
+//         isLoaded = !isLoaded;
+//         const files = event.target.files;
+//         tracks = [...tracks, ...files];
+//         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
+//     };
 
-    function getTrack(track: Blob | MediaSource){
-        audio.pause();
-        audio = new Audio(URL.createObjectURL(track));
-    };
+//     function getTrack(track: Blob | MediaSource){
+//         audio.pause();
+//         audio = new Audio(URL.createObjectURL(track));
+//         countSongs();
+//     };
 
-    function playPauseAudio(){
-        isPlaying = !isPlaying;
-        isPlaying ? audio.play() : audio.pause();
-    };
+//     function playPauseAudio(){
+//         isPlaying = !isPlaying;
+//         isPlaying ? audio.play() : audio.pause();
+//     };
 
-    function loopAudio(){
-        isLooped = !isLooped;
-        isLooped ? audio.loop = true : audio.loop = false;
-    };
+//     function loopAudio(){
+//         isLooped = !isLooped;
+//         isLooped ? audio.loop = true : audio.loop = false;
+//     };
     
-    function muteAudio(){
-        isMuted = !isMuted;
-        isMuted ? audio.muted = true : audio.muted = false;
-        isMuted ? volume = 0 : volume = 0.5;
-    };
+//     function muteAudio(){
+//         isMuted = !isMuted;
+//         isMuted ? audio.muted = true : audio.muted = false;
+//         isMuted ? volume = 0 : volume = 0.5;
+//     };
 
-    function prevAudio(){
-        songIndex--;
-        if(songIndex < 0){
-            songIndex = tracks.length - 1;
-        }
-        if(!isPlaying){
-            isPlaying = true;
-        }
-        audio.pause();
-        audio = new Audio(URL.createObjectURL(tracks[songIndex]));
-        audio.play();
-    };
+//     function prevAudio(){
+//         songIndex--;
+//         if(songIndex < 0){
+//             songIndex = tracks.length - 1;
+//         }
+//         if(!isPlaying){
+//             isPlaying = true;
+//         }
+//         audio.pause();
+//         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
+//         audio.play();
+//     };
 
-    function nextAudio(){
-        songIndex++;
-        if(songIndex > tracks.length - 1){
-            songIndex = 0;
-        }
-        audio.pause()
-        if(!isPlaying){
-            isPlaying = true;
-        }
-        audio = new Audio(URL.createObjectURL(tracks[songIndex]));
-        audio.play();
-    };
+//     function nextAudio(){
+//         songIndex++;
+//         if(songIndex > tracks.length - 1){
+//             songIndex = 0;
+//         }
+//         audio.pause()
+//         if(!isPlaying){
+//             isPlaying = true;
+//         }
+//         audio = new Audio(URL.createObjectURL(tracks[songIndex]));
+//         audio.play();
+//     };
 
-    function setProgress(){
-        if (audio){
-            audio.currentTime = progress / 100 * audio.duration;
-        }
-    };
+//     function setProgress(){
+//         if (audio){
+//             audio.currentTime = progress / 100 * audio.duration;
+//         }
+//     };
     
-    function updateProgress(){
-		duration = audio.duration;
-        progress = audio.currentTime * (100 / duration);
+//     function updateProgress(){
+// 		duration = audio.duration;
+//         progress = audio.currentTime * (100 / duration);
 
-		let currMins = Math.floor(audio.currentTime / 60);
-		let currSecs = Math.floor(audio.currentTime - currMins * 60);
+// 		let currMins = Math.floor(audio.currentTime / 60);
+// 		let currSecs = Math.floor(audio.currentTime - currMins * 60);
 		
-		let durMins = Math.floor( (duration / 60) % 60 );
-		let durSecs =  Math.floor(duration - (durMins * 60));
+// 		let durMins = Math.floor( (duration / 60) % 60 );
+// 		let durSecs =  Math.floor(duration - (durMins * 60));
 		
-		if(currSecs < 10) currSecs = `0${currSecs}`;
-		if(durSecs < 10) durSecs = `0${durSecs}`;
-		if(currMins < 10) currMins = `${currMins}`;
-		if(durMins < 10) durMins = `${durMins}`;
+// 		if(currSecs < 10) currSecs = `0${currSecs}`;
+// 		if(durSecs < 10) durSecs = `0${durSecs}`;
+// 		if(currMins < 10) currMins = `${currMins}`;
+// 		if(durMins < 10) durMins = `${durMins}`;
 		
-		if (audio.ended){
-            nextAudio();
-		}
-        currTimeDisplay = `${currMins}:${currSecs}`;
-        totalTimeDisplay = `${durMins}:${durSecs}`;
-    };
+// 		if (audio.ended){
+//             nextAudio();
+// 		}
+//         currTimeDisplay = `${currMins}:${currSecs}`;
+//         totalTimeDisplay = `${durMins}:${durSecs}`;
+//     };
     
-    function filterTracks(track){
-        return track.name.toLowerCase().includes(searchText.toLowerCase());
-    };
+//     function filterTracks(track){
+//         return track.name.toLowerCase().includes(searchText.toLowerCase());
+//     };
 
-    function likeAudio(track: File){
-        isLiked = !isLiked;
-        likedtracks = tracks.push(track);
-    };
+//     function likeAudio(track: File){
+//         isLiked = !isLiked;
+//         likedtracks = tracks.push(track);
+//     };
 
-    function deleteTrack(track: File){
-        tracks = tracks.filter(t => t !== track);
-    };
+//     function deleteTrack(track: File){
+//         tracks = tracks.filter(t => t !== track);
+//     };
+
+//     function countSongs(){
+//         songNumber = songNumber++;
+//     }
 </script>	
-<player class="flex overflow-hidden justify-center font-rubik">
+
+        <PlayerUI />
+
+ <!-- <player class="flex overflow-hidden justify-center font-rubik">
 <div class="w-full h-full absolute left-0 top-0 z-0 bg-[#2d2e37]" />
-    <navigation class="flex justify-between items-center absolute bottom-0 w-11/12 h-20 z-[1] mb-4 px-1 bg-gradient-to-r from-[#1e1c88] to-[#1a195c] rounded-2xl opacity-80">
+    <navigation class="flex justify-between items-center absolute bottom-0 w-11/12 h-20 z-[1] mb-4 px-1 bg-gradient-to-r from-[#2522a7] to-[#1a195c] rounded-2xl opacity-80">
         <div class="w-[160px] pl-2 max-[840px]:absolute max-[840px]:left-[360px] max-[769px]:left-[270px] max-sm:left-[170px] max-[414px]:left-[100px] max-[280px]:left-[50px]">
             <button on:pointerdown={prevAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
                 <i class="fas fa-backward"></i>
             </button>
             <button on:pointerdown={tracks.length > 0 ? playPauseAudio : null} on:keydown={tracks.length > 0 ? playPauseAudio : null} class="action-btn action-btn-big p-0 m-0">
-                <div class="bg-[#fcfcff] hover:bg-black border-0 rounded-full px-[18px] py-[10px] m-0 shadow-[0px_0px_15px_0px_rgba(255,255,255,0.5)]">
+                <div class="bg-[#fcfcff] hover:bg-black border-0 rounded-full pl-[14px] pr-[12px] py-[10px] m-0 shadow-[0px_0px_15px_0px_rgba(255,255,255,0.5)]">
                     <i class="fas {isPlaying? 'fa-pause' : 'fa-play'}"></i>
                 </div>
             </button>
@@ -168,7 +177,7 @@
         </div>
     </navigation>
     <div class="playlist">
-        <div class="flex justify-center rounded-3xl bg-red-700 h-7">
+        <div class="flex justify-center rounded-3xl bg-gradient-to-r from-[#2522a7] to-[#1a195c] h-7">
         <form on:submit={submitSearch} class="w-1/2 text-center rounded-3xl focus:outline-none bg-gray-950 text-[#fcfcff]">
             <input type="search" bind:value={form.searchString}
             class="w-9/12 text-center rounded-3xl focus:outline-none bg-gray-950 text-[#fcfcff] placeholder-[#fcfcff]" 
@@ -196,7 +205,7 @@
         {#each tracks as track}
         <div class="playlist-elements">
             <li on:pointerdown={()=>{getTrack(track)}} class="playsongs">
-                <span>{track.name}</span>
+                <span class="pl-10">{songNumber} . {track.name}</span>
             </li>
             <span class="flex items-center justify-center text-[#fcfcff] font-mono font-bold">{track.size}</span>
             <button on:click={() => likeAudio(track)} class="fa-{isLiked? 'solid' : 'regular'} fa-heart action-btn {isLiked? 'text-4xl' : 'text-3xl'}"></button>
@@ -207,4 +216,4 @@
             <span class="text-[#fcfcff] text-6xl">{likedtrack.name}</span>
         {/each}
     </div>
-</player> 
+</player> -->

@@ -52,3 +52,20 @@
     from {transform: translateX(0);     margin-left: 0;}
     to   {transform: translateX(-100%); margin-left: 100%; }
   }
+
+/*PlayerUI*/
+.svg{
+    @apply w-6 h-6
+}
+.big-svg{
+    @apply w-9 h-9 fill-black
+}
+.button{
+    @apply flex items-center justify-center rounded-full fill-white
+}
+.big-button{
+    @apply flex items-center justify-end rounded-full bg-white p-2
+}
+.side-button{
+    @apply flex items-center justify-center rounded-full fill-white
+}
