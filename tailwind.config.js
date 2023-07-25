@@ -17,7 +17,7 @@ export default {
         }
       },
       fontFamily: {
-        body: ['Raleway']
+        rubik: ['Rubik'],
       },
       display: ["group-hover"],
     },

@@ -1,27 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .action-btn {
-    @apply cursor-pointer text-xl p-3 my-0 mx-5 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-primary-200 focus:outline-none outline-none
+    @apply cursor-pointer text-xl p-3 my-0 mx-2 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none
 }
 .action-btn-big {
-    @apply text-red-600 text-3xl
+    @apply text-black text-3xl
 }
 .playlist {
     @apply absolute left-0 h-fit w-full bg-gray-950 z-0 mt-0 rounded-2xl overflow-x-hidden overflow-y-auto
 }
 .playlist-elements {
     animation: fadeIn 1s;
-    @apply flex overflow-hidden
+    @apply flex overflow-hidden list-decimal
 }
 .playsongs {
-    @apply relative w-9/12 bg-transparent m-1 cursor-pointer text-white rounded-xl overflow-hidden
+    @apply relative w-9/12 bg-transparent m-1 cursor-pointer text-white rounded-xl font-rubik overflow-hidden float-left
 }
 .playsongs span {
     animation: playsongs1 10s ease-in-out forwards infinite;
-    @apply inline-block min-w-full whitespace-nowrap text-5xl
+    @apply inline-block min-w-full whitespace-nowrap text-xl
 }
 .progress {
     transition: width 0.1 linear;
@@ -37,7 +38,7 @@
     @apply relative w-[200px] h-[10px] bg-red-800 rounded-[30px]
 }
 .slider input {
-    @apply absolute left-[-12px] top-[-5px] w-[112px] h-5 appearance-none bg-transparent z-10
+    @apply absolute left-[-12px] top-[-5px] w-[80px] h-5 appearance-none bg-transparent z-10
 }
 .slider input::-webkit-slider-thumb {
     @apply w-5 h-5 bg-red-600 border-red-50 border-2 rounded-[50%] cursor-pointer appearance-none
