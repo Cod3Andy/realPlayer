@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { space } from "postcss/lib/list";
+
     let tracks: File[] = [];
     let likedtracks: File[] = [];
     let songIndex: number = 0;
@@ -125,21 +127,21 @@
 </script>	
 <player class="flex overflow-hidden justify-center font-rubik">
 <div class="w-full h-full absolute left-0 top-0 z-0 bg-[#2d2e37]" />
-    <navigation class="flex justify-between items-center absolute bottom-0 w-11/12 h-20 z-[1] mb-4 px-1 bg-[#1a195c] rounded-2xl opacity-80">
+    <navigation class="flex justify-between items-center absolute bottom-0 w-11/12 h-20 z-[1] mb-4 px-1 bg-gradient-to-r from-[#1e1c88] to-[#1a195c] rounded-2xl opacity-80">
         <div class="w-[160px] pl-2 max-[840px]:absolute max-[840px]:left-[360px] max-[769px]:left-[270px] max-sm:left-[170px] max-[414px]:left-[100px] max-[280px]:left-[50px]">
-            <button on:click={prevAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
+            <button on:pointerdown={prevAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
                 <i class="fas fa-backward"></i>
             </button>
-            <button on:click={playPauseAudio} class="action-btn action-btn-big p-0 m-0">
-                <div class="bg-[#fcfcff] border-0 rounded-full px-[18px] py-[10px] m-0 shadow-[0px_0px_15px_0px_rgba(255,255,255,0.5)]">
+            <button on:pointerdown={tracks.length > 0 ? playPauseAudio : null} on:keydown={tracks.length > 0 ? playPauseAudio : null} class="action-btn action-btn-big p-0 m-0">
+                <div class="bg-[#fcfcff] hover:bg-black border-0 rounded-full px-[18px] py-[10px] m-0 shadow-[0px_0px_15px_0px_rgba(255,255,255,0.5)]">
                     <i class="fas {isPlaying? 'fa-pause' : 'fa-play'}"></i>
                 </div>
             </button>
-            <button on:click={nextAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
+            <button on:pointerdown={nextAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
                 <i class="fas fa-forward"></i>
             </button>
         </div>
-        <div  class=" w-1/5 font-bold text-xl text-[#fcfcff] overflow-hidden max-sm:hidden">{isPlaying? tracks[songIndex].name : ''}</div>
+        <div  class=" w-1/5 font-bold text-xl text-[#fcfcff] overflow-hidden max-sm:hidden">{tracks.length > 0 ? tracks[songIndex].name : ''}</div>
         <label for="upload" class="action-btn fa-solid fa-plus max-[414px]:absolute max-[414px]:left-[10px]"></label>
         <input multiple type="file" class="hidden" id="upload" on:change={handleFileInput} accept="audio/*"/>
         <div class="w-2/5">

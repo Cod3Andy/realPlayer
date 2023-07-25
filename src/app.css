@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .action-btn {
-    @apply cursor-pointer text-xl p-3 my-0 mx-2 bg-transparent rounded-full border-0 text-white hover:scale-110 hover:text-gray-950 focus:outline-none outline-none
+    @apply cursor-pointer text-xl p-3 my-0 mx-2 bg-transparent rounded-full border-0 text-white hover:scale-110 hover:text-gray-200 focus:outline-none outline-none
 }
 .action-btn-big {
     @apply text-black text-3xl
