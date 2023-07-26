@@ -132,7 +132,7 @@ import PlayerUI from "$lib/PlayerUI.svelte";
 //     }
 </script>	
 
-        <PlayerUI />
+    <PlayerUI />
 
  <!-- <player class="flex overflow-hidden justify-center font-rubik">
 <div class="w-full h-full absolute left-0 top-0 z-0 bg-[#2d2e37]" />

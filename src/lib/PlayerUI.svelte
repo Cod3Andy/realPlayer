@@ -52,80 +52,256 @@
             </svg>
         </button>
     </sidepanel>
-    <content class="z-[1] absolute rounded-2xl right-0 w-11/12 2xl:w-[96%] h-full bg-gray-700"> 
-        <playlist class="{isHidden ? 'hidden': 'block'} w-full h-full bg-gray-500 rounded-2xl z-0">
-            <div class="flex flex-col">
-                <div class="flex justify-start items-center w-2/3 h-24 gap-14 mt-1 bg-white rounded-xl">
-                    <div class="flex justify-start items-center w-2/3 ">
-                        <span class="text-bold text-xl px-2">01</span>
-                        <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
-                        <div class="flex flex-col pl-1">
-                            <span class="font-bold">Track name</span>
-                            <span>🧑‍🎤artist</span>
+    <content class="flex justify-center z-[1] absolute rounded-2xl right-0 w-11/12 2xl:w-[96%] h-full bg-gray-700"> 
+        <playlist class="{isHidden ? 'hidden': 'block'} flex w-full h-full bg-gray-500 rounded-2xl z-0">
+            <div class="flex flex-col w-[70%]">
+                <h4 class="font-semibold text-black text-4xl px-4 pt-8">Home</h4>
+                <div class="mx-10 bg-red-700 w-[90%] h-1/3 my-2 rounded-xl"></div>
+                <h4 class="font-medium text-black text-xl px-4">Trending right now</h4>
+                <div class="flex flex-col h-96 w-full pl-4 overflow-y-scroll ">
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 ">
+                            <span class="text-bold text-xl px-2">01</span>
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">Track name</span>
+                                <span>🧑‍🎤artist</span>
+                            </div>
+                        </div>
+                        <span>3:36</span>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
+                                </svg>
+                            </button>
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <span>3:36</span>
-                    <div class="flex justify-center gap-6">
-                        <button class="button">
-                            <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
-                            </svg>
-                        </button>
-                        <button class="button">
-                            <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="flex justify-start items-center w-2/3 h-24 gap-14 mt-1 bg-white rounded-xl">
-                    <div class="flex justify-start items-center w-2/3 ">
-                        <span class="text-bold text-xl px-2">02</span>
-                        <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
-                        <div class="flex flex-col pl-1">
-                            <span class="font-bold">Track name</span>
-                            <span>🧑‍🎤artist</span>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 ">
+                            <span class="text-bold text-xl px-2">02</span>
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">Track name</span>
+                                <span>🧑‍🎤artist</span>
+                            </div>
+                        </div>
+                        <span>3:36</span>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
+                                </svg>
+                            </button>
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <span>3:36</span>
-                    <div class="flex justify-center gap-6">
-                        <button class="button">
-                            <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
-                            </svg>
-                        </button>
-                        <button class="button">
-                            <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="flex justify-start items-center w-2/3 h-24 gap-14 mt-1 bg-white rounded-xl">
-                    <div class="flex justify-start items-center w-2/3 ">
-                        <span class="text-bold text-xl px-2">03</span>
-                        <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
-                        <div class="flex flex-col pl-1">
-                            <span class="font-bold">Track name</span>
-                            <span>🧑‍🎤artist</span>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 ">
+                            <span class="text-bold text-xl px-2">03</span>
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">Track name</span>
+                                <span>🧑‍🎤artist</span>
+                            </div>
+                        </div>
+                        <span>3:36</span>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
+                                </svg>
+                            </button>
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <span>3:36</span>
-                    <div class="flex justify-center gap-6">
-                        <button class="button">
-                            <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
-                            </svg>
-                        </button>
-                        <button class="button">
-                            <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
-                            </svg>
-                        </button>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 ">
+                            <span class="text-bold text-xl px-2">04</span>
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">Track name</span>
+                                <span>🧑‍🎤artist</span>
+                            </div>
+                        </div>
+                        <span>3:36</span>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
+                                </svg>
+                            </button>
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 ">
+                            <span class="text-bold text-xl px-2">05</span>
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">Track name</span>
+                                <span>🧑‍🎤artist</span>
+                            </div>
+                        </div>
+                        <span>3:36</span>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
+                                </svg>
+                            </button>
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 ">
+                            <span class="text-bold text-xl px-2">06</span>
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">Track name</span>
+                                <span>🧑‍🎤artist</span>
+                            </div>
+                        </div>
+                        <span>3:36</span>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
+                                </svg>
+                            </button>
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 ">
+                            <span class="text-bold text-xl px-2">07</span>
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">Track name</span>
+                                <span>🧑‍🎤artist</span>
+                            </div>
+                        </div>
+                        <span>3:36</span>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
+                                </svg>
+                            </button>
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="flex flex-col w-[30%]">
+                <div class="relative">
+                    <button class="button absolute pt-9">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
+                            <path d="M12 14.5c0-3.033 2.081-5.574 4.891-6.291-.476-1.777-1.209-3.367-2.753-4.264-.644-.374-1.042-1.07-1.041-1.82v-.003c0-1.172-.939-2.122-2.097-2.122s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.667 2.712-1.985 11.715-6.862 13.306v1.749h12.816c-1.122-1.168-1.816-2.752-1.816-4.5zm-1-11.5c-.552 0-1-.448-1-1 0-.551.448-1 1-1s1 .449 1 1c0 .552-.448 1-1 1zm-3 18h6c0 1.598-1.392 3-2.971 3s-3.029-1.402-3.029-3zm10.5-11c-2.486 0-4.5 2.015-4.5 4.5s2.014 4.5 4.5 4.5c2.484 0 4.5-2.015 4.5-4.5s-2.016-4.5-4.5-4.5zm-.469 6.484l-1.688-1.637.695-.697.992.94 2.115-2.169.697.696-2.811 2.867z"/>
+                        </svg>
+                    </button>
+                    <div class="pt-8 ml-12">
+                        <div class="relative mb-4 flex w-11/12 flex-wrap items-stretch">
+                        <input type="search" class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-md placeholder-gray-400 border border-solid border-neutral-300 bg-transparent bg-clip-padding px-7 py-[0.25rem] text-sm font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" 
+                            placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
+                        <span class="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="svg absolute left-0 fill-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="font-medium text-black text-xl">Top Artist</h4>
+                <div class="flex flex-col h-[204px] overflow-y-scroll">
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 pl-2">
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">🧑‍🎤artist</span>
+                                <span class="text-xs opacity-75">1M followers ♬ 100M plays</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 pl-2">
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">🧑‍🎤artist</span>
+                                <span class="text-xs opacity-75">1M followers ♬ 100M plays</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-white rounded-xl">
+                        <div class="flex justify-start items-center w-2/3 pl-2">
+                            <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
+                            <div class="flex flex-col pl-1">
+                                <span class="font-bold">🧑‍🎤artist</span>
+                                <span class="text-xs opacity-75">1M followers ♬ 100M plays</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-6 pr-4">
+                            <button class="button">
+                                <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="font-medium text-black text-xl p-2">Recent favourites</h4>
+                <div class="grid grid-cols-2 gap-3 mx-7">
+                    <div class="bg-red-500 h-36 w-36"></div>
+                    <div class="bg-red-500 h-36 w-36"></div>
+                    <div class="bg-red-500 h-36 w-36"></div>
+                    <div class="bg-red-500 h-36 w-36"></div>
+                </div>
+            </div>
         </playlist>
-        <mediabar class="flex items-center justify-center lg:justify-start absolute bottom-5 w-[95%] bg-black p-4 gap-8 2xl:gap-28 rounded-full">
+        <mediabar class="flex items-center justify-center lg:justify-start absolute bottom-3 w-[95%] bg-black p-4 gap-8 2xl:gap-28 rounded-full opacity-90">
             <div class="flex justify-center pl-2 gap-2">
                 <button class="button">
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
