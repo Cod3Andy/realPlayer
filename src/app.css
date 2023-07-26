@@ -61,10 +61,10 @@
     @apply w-9 h-9 fill-black
 }
 .button{
-    @apply flex items-center justify-center rounded-full fill-white
+    @apply flex items-center justify-center rounded-full fill-white w-fit hover:scale-110
 }
 .big-button{
-    @apply flex items-center justify-end rounded-full bg-white p-2
+    @apply flex items-center justify-end rounded-full bg-white p-2 hover:scale-105
 }
 .side-button{
     @apply flex items-center justify-center rounded-full fill-white
