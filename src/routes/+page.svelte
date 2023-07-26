@@ -1,5 +1,5 @@
 <script lang="ts">
-import PlayerUI from "$lib/PlayerUI.svelte";
+    import PlayerUI from "$lib/PlayerUI.svelte";
 
 //     let tracks: File[] = [];
 //     let likedtracks: File[] = [];
@@ -22,7 +22,9 @@ import PlayerUI from "$lib/PlayerUI.svelte";
 //     searchString: ''
 //     };
 //     let searchString = '';
-//     $: isPlaying ? updateProgress() : null;
+//     // while (isPlaying){setTimeout(updateProgress, 1000)};
+//     // $: isPlaying ? updateProgress() : null;
+//     // $: isPlaying ? audio.onloadedmetadata = () => {updateProgress()} : null;
 //     $: tracks = tracks.filter((track) => {
 //     return track.name.toLowerCase().includes(searchString.toLowerCase());
 //   });
@@ -134,8 +136,8 @@ import PlayerUI from "$lib/PlayerUI.svelte";
 
     <PlayerUI />
 
- <!-- <player class="flex overflow-hidden justify-center font-rubik">
-<div class="w-full h-full absolute left-0 top-0 z-0 bg-[#2d2e37]" />
+<!-- <player class="flex overflow-hidden justify-center font-rubik">
+    <div class="w-full h-full absolute left-0 top-0 z-0 bg-[#2d2e37]" />
     <navigation class="flex justify-between items-center absolute bottom-0 w-11/12 h-20 z-[1] mb-4 px-1 bg-gradient-to-r from-[#2522a7] to-[#1a195c] rounded-2xl opacity-80">
         <div class="w-[160px] pl-2 max-[840px]:absolute max-[840px]:left-[360px] max-[769px]:left-[270px] max-sm:left-[170px] max-[414px]:left-[100px] max-[280px]:left-[50px]">
             <button on:pointerdown={prevAudio} class="cursor-pointer text-lg p-0 my-0 mx-0 bg-transparent rounded-full border-0 text-white hover:scale-125 hover:text-gray-950 focus:outline-none outline-none">
@@ -161,7 +163,7 @@ import PlayerUI from "$lib/PlayerUI.svelte";
             </div> 
             <div class="relative max-[840px]:hidden max-[840px]: bg-[#fcfcff] rounded-md cursor-pointer my-3 mx-0 h-2 w-full">
                 <div class="progress" style="width: {progress}%"></div>
-                <input type="range" class="seek-slider" min={0} max={100} step={1} bind:value={progress} on:input={setProgress} on:timeupdate={() => updateProgress()}>
+                <input type="range" class="seek-slider" min={0} max={100} step={1} bind:value={progress} on:input={setProgress} on:timeupdate={updateProgress}>
             </div>
         </div>
         <button on:click={loopAudio} class="action-btn">
