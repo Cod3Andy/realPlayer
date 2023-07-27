@@ -29,7 +29,7 @@
     @apply bg-red-800 rounded-md h-full
 }
 .seek-slider{
-    @apply absolute top-[-1px] left-[-8px] ml-0 rounded-md h-full w-[103%] bg-transparent appearance-none
+    @apply absolute top-[-1px] left-[-4px] xl:left-[-8px] ml-0 rounded-md h-full w-[103%] bg-transparent appearance-none
 }
 .seek-slider::-webkit-slider-thumb {
     @apply w-5 h-5 bg-red-600 border-red-50 border-2 rounded-[50%] cursor-pointer appearance-none
@@ -38,7 +38,7 @@
     @apply relative w-[200px] h-[10px] bg-red-800 rounded-[30px]
 }
 .slider input {
-    @apply absolute left-[-12px] top-[-5px] w-[80px] h-5 appearance-none bg-transparent z-10
+    @apply absolute left-[-30px] xl:left-[-12px] top-[-5px] w-[80px] h-5 appearance-none bg-transparent z-10
 }
 .slider input::-webkit-slider-thumb {
     @apply w-5 h-5 bg-red-600 border-red-50 border-2 rounded-[50%] cursor-pointer appearance-none

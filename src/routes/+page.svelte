@@ -336,7 +336,7 @@
                     </div>
                 </div>
                 <h4 class="font-medium text-black text-xl p-2">Recent favourites</h4>
-                <div class="flex gap-2 max-lg:justify-center px-2">
+                <div class="flex gap-2 justify-center px-2 overflow-hidden">
                     <div class="flex flex-col gap-2">
                         <div class="bg-red-600 h-36 w-36 rounded-xl"></div>
                         <div class="bg-red-600 h-36 w-36 rounded-xl"></div>
@@ -423,7 +423,7 @@
                 </div>
                 <span class="text-white w-[10%]">{totalTimeDisplay}</span>
             </div>
-            <div class="flex justify-center gap-4">
+            <div class="flex justify-center gap-4 w-[15%]">
                 <button class="button">
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
                         <path d="M2 7h-2v-2h2c3.49 0 5.48 1.221 6.822 2.854-.41.654-.754 1.312-1.055 1.939-1.087-1.643-2.633-2.793-5.767-2.793zm16 10c-3.084 0-4.604-1.147-5.679-2.786-.302.627-.647 1.284-1.06 1.937 1.327 1.629 3.291 2.849 6.739 2.849v3l6-4-6-4v3zm0-10v3l6-4-6-4v3c-5.834 0-7.436 3.482-8.85 6.556-1.343 2.921-2.504 5.444-7.15 5.444h-2v2h2c5.928 0 7.543-3.511 8.968-6.609 1.331-2.893 2.479-5.391 7.032-5.391z"/>
@@ -434,7 +434,7 @@
                         <path d="M2 12c0 .999.381 1.902.989 2.604l-1.098.732-.587.392c-.814-1.025-1.304-2.318-1.304-3.728 0-3.313 2.687-6 6-6h9v-3l6 4-6 4v-3h-9c-2.206 0-4 1.794-4 4zm20.696-3.728l-.587.392-1.098.732c.608.702.989 1.605.989 2.604 0 2.206-1.795 4-4 4h-9v-3l-6 4 6 4v-3h9c3.313 0 6-2.687 6-6 0-1.41-.489-2.703-1.304-3.728z"/>
                     </svg>
                 </button>
-                <div class="flex justify-center m-0 p-0 group ">
+                <div class="w-1/3 group relative">
                     <button on:click={muteAudio} class="button">
                         <svg xmlns="http://www.w3.org/2000/svg" class="svg" fill-rule="evenodd" clip-rule="evenodd">
                             <path d="{isMuted === true || volume === 0 ? 'M18 23l-9.305-5.998.835-.651 7.47 4.815v-10.65l1-.781v13.265zm0-15.794l5.384-4.206.616.788-23.384 18.264-.616-.788 5.46-4.264h-2.46v-10h5.691l9.309-6v6.206zm-11.26 8.794l1.26-.984v-7.016h-4v8h2.74zm10.26-8.013v-5.153l-8 5.157v6.244l8-6.248z'
@@ -442,7 +442,7 @@
                         </svg>
                         <i class="fas {volume > 0.7 && volume > 0 ? 'fa-volume-high' : 'fa-volume-low'} {volume === 0 ? 'fa-volume-xmark' : ''}"></i>
                     </button>
-                    <div class="slider hidden  group-hover:block" style="width: {volume * 100}%">
+                    <div class="slider hidden group-hover:block absolute left-[-15px] bottom-[-5px]" style="width: {volume * 100}%">
                         <input type="range" min={0} max={1} step={0.01} bind:value={volume} on:input={(e)=>{ audio.volume = e.target.value}}>
                     </div>
                 </div>
