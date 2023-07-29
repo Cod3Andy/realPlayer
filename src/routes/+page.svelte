@@ -137,7 +137,7 @@
         tracks = tracks.filter(t => t !== track);
     };
 </script>
-<navbar class="flex h-screen w-0 {isNavHidden? '' : 'sm:w-screen'} rounded-lg bg-zinc-800 z-0 font-rubik">
+<navbar class="flex bg-zinc-800 font-rubik">
     <sidepanel class="{isNavHidden? 'hidden' : 'max-sm:z-20 max-sm:absolute max-sm:bg-black'} flex flex-col justify-center items-center w-1/4 sm:w-1/12 h-screen gap-10 xl:gap-16 2xl:gap-44 rounded-tr-3xl rounded-br-3xl opacity-95 pt-3">
         <button on:click={()=> {isNavHidden = !isNavHidden}} class="button bg-pink-800 p-3 opacity-95">
             <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -165,7 +165,7 @@
                     <path d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z"/>
                 </svg>
             </button>
-            <div class="flex justify-center flex-col w-full my-10 border-t-2 border-gray-500 border-solid"></div>
+            <div class="flex justify-center flex-col w-full my-10 border-t-2 border-[#fcfcff] border-solid"></div>
             <button on:click={() => {isLikedHidden = false; isHidden = true}} class="button {isLikedHidden ? '' : 'shadow-[0px_0px_30px_5px_rgba(255,255,255,0.5)]'}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24">
                     <path d="m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z" fill-rule="nonzero"/>
@@ -189,7 +189,7 @@
         </button>
     </sidepanel>
     <content>
-        <liked class="flex {isLikedHidden ? 'hidden' : ''} justify-center absolute bg-gray-500 w-full h-full z-[11] rounded-lg {isNavHidden? '' : 'sm:w-11/12 sm:rounded-2xl'}">
+        <liked class="flex {isLikedHidden ? 'hidden' : ''} justify-center absolute bg-black w-full h-full z-[11] rounded-lg {isNavHidden? '' : 'sm:w-11/12 sm:rounded-2xl'}">
             <div class="{isNavHidden === true && isLikedHidden === false ? 'block' : 'hidden'}">
                 <button on:click={()=>{isNavHidden=!isNavHidden}} class="button bg-pink-800 p-3 mt-2 ml-2 opacity-95 {isNavHidden? 'block':'md:hidden'}">
                     <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -198,10 +198,10 @@
                 </button>
             </div>
             <div class="flex flex-col">
-                <h4 class="font-semibold text-black text-4xl px-2 pt-2">Liked songs</h4>
-                <div class="flex flex-col h-full w-full pl-2 gap-2 md:pl-4 overflow-y-scroll ">
+                <h4 class="font-semibold text-[#fcfcff] text-4xl px-2 pt-2">Liked songs</h4>
+                <div class="flex flex-col h-full w-full pl-2 gap-2 md:pl-4 overflow-hidden ">
                     {#each likedTracks as ltrack}
-                        <div  class="flex justify-start items-center w-full h-16 max-[375px]:gap-2 gap-10 md:gap-14 mt-1 bg-slate-500 rounded-xl">
+                        <div  class="flex justify-start items-center w-full h-16 max-[375px]:gap-2 gap-10 md:gap-14 mt-1 bg-black text-[#fcfcff] rounded-xl">
                             <div class="flex justify-start items-center w-2/3 gap-2 md:gap-3">
                                 <span class="text-bold text-xl px-2"></span>
                                 <div class="flex bg-red-700 h-14 w-14 rounded-xl md:rounded-2xl"></div>
@@ -213,13 +213,13 @@
                             <span>3:36</span>
                             <div class="flex justify-center max-[375px]:gap-2 gap-6 pr-4">
                                 <button  class="button">
-                                    <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg clip-rule="evenodd" class="svg fill-[#fcfcff]" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="{isLiked === true && tracks.length > 0 ? 'm12 5.72c-2.624-4.517-10-3.198-10 2.461 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-5.678-7.396-6.944-10-2.461z' 
                                         :'m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z'} " fill-rule="nonzero"/>
                                     </svg>
                                 </button>
                                 <button  class="button">
-                                    <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg clip-rule="evenodd" class="svg fill-[#fcfcff]" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
                                     </svg>
                                 </button>
@@ -256,7 +256,7 @@
                     </div>
                 </div>
             </div>
-            <playlist class="{isHidden ? 'hidden': 'block'} flex w-full h-full bg-[#2d2e37] rounded-2xl z-0">
+            <playlist class="{isHidden ? 'hidden': 'block'} flex w-full h-full bg-black rounded-2xl z-0">
                 <div class="flex flex-col w-full md:w-[70%]">
                     <div class="flex justify-start items-center">
                         <button on:click={()=>{isNavHidden=!isNavHidden}} class="button bg-pink-800 p-3 mt-2 ml-2 opacity-95 {isNavHidden? 'block':'md:hidden'}">
@@ -264,11 +264,11 @@
                                 <path d="M14.8 21.314c-1.185.44-2.463.686-3.8.686-6.075 0-11-4.924-11-11 0-6.074 4.925-11 11-11 6.074 0 10.999 4.926 10.999 11 0 .463-.032.918-.09 1.365.264.282.421.666.421 1.103v.024l.121-.005c.881 0 1.547.675 1.547 1.57l.002 5.839c0 1.914-1.213 3.104-3.167 3.104h-2.64c-2.07 0-2.76-1.406-3.094-2.084l-.299-.602zm6.033 1.686c1.418 0 2.167-.766 2.167-2.104l-.002-5.839c0-.386-.274-.57-.547-.57-.276 0-.549.185-.549.535v2.56c0 .175-.141.259-.281.259-.145 0-.291-.089-.291-.259v-4.114c0-.396-.288-.589-.577-.589-.293 0-.587.199-.587.589v3.884c0 .164-.131.245-.264.245s-.268-.084-.268-.25v-4.557c0-.391-.285-.59-.613-.59-.322 0-.572.193-.572.59l-.002 4.609c0 .183-.143.275-.285.275-.145 0-.287-.092-.287-.275v-3.872c0-.369-.284-.557-.565-.557-.277 0-.553.182-.553.557v4.794c0 .154-.111.234-.226.234-.084 0-.172-.042-.219-.128l-.785-1.444c-.152-.292-.432-.419-.709-.419-.41 0-.818.277-.818.711 0 .111.027.233.085.362.112.265 1.557 3.112 1.913 3.839.375.762.847 1.524 2.195 1.524h2.64zm.124-11.109c.027-.293.042-.59.042-.891 0-5.514-4.486-10-9.999-10-5.514 0-10 4.486-10 10s4.486 10 10 10c1.176 0 2.301-.209 3.348-.587l-.046-.092c-.718-1.433-1.066-2.127-1.125-2.265-.117-.255-.177-.518-.177-.781 0-.943.816-1.711 1.818-1.711.344 0 .664.089.939.254v-2.291c0-.888.668-1.557 1.553-1.557l.326.032c.258-.49.764-.802 1.385-.802.59 0 1.086.28 1.367.72.117-.027.238-.041.365-.041l.204.012zm-12.519 5.991c-1.989-.746-3.569-2.329-4.308-4.321l-.935.116c.821 2.409 2.721 4.311 5.126 5.139l.117-.934zm.238-1.903c-1.166-.547-2.107-1.49-2.654-2.656l-.954.121c.65 1.578 1.91 2.838 3.49 3.489l.118-.954zm2.324-8.645c2.025 0 3.667 1.641 3.667 3.666s-1.642 3.667-3.667 3.667c-2.026 0-3.667-1.642-3.667-3.667s1.641-3.666 3.667-3.666zm0 1c-1.47 0-2.667 1.196-2.667 2.666 0 1.471 1.197 2.667 2.667 2.667 1.471 0 2.667-1.196 2.667-2.667 0-1.47-1.196-2.666-2.667-2.666zm-.916 2.666c0 .506.41.917.916.917s.917-.411.917-.917-.411-.916-.917-.916-.916.41-.916.916zm6.849-2.443c-.65-1.577-1.912-2.838-3.49-3.488l-.119.954c1.166.546 2.107 1.488 2.656 2.654l.953-.12zm.924-.115c-.746-1.977-2.319-3.547-4.301-4.287l.119-.934c2.395.822 4.289 2.712 5.117 5.104l-.935.117z"/>
                             </svg>
                         </button>
-                        <h4 class="font-semibold text-black text-4xl px-2 pt-2">Home</h4>
+                        <h4 class="font-semibold text-[#fcfcff] text-4xl px-2 pt-2">Home</h4>
                         <div class="flex flex-col w-full md:hidden">
                             <div class="relative">
                                 <button class="button absolute pt-9">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg fill-black" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg fill-[#fcfcff]" viewBox="0 0 24 24">
                                         <path d="M12 14.5c0-3.033 2.081-5.574 4.891-6.291-.476-1.777-1.209-3.367-2.753-4.264-.644-.374-1.042-1.07-1.041-1.82v-.003c0-1.172-.939-2.122-2.097-2.122s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.667 2.712-1.985 11.715-6.862 13.306v1.749h12.816c-1.122-1.168-1.816-2.752-1.816-4.5zm-1-11.5c-.552 0-1-.448-1-1 0-.551.448-1 1-1s1 .449 1 1c0 .552-.448 1-1 1zm-3 18h6c0 1.598-1.392 3-2.971 3s-3.029-1.402-3.029-3zm10.5-11c-2.486 0-4.5 2.015-4.5 4.5s2.014 4.5 4.5 4.5c2.484 0 4.5-2.015 4.5-4.5s-2.016-4.5-4.5-4.5zm-.469 6.484l-1.688-1.637.695-.697.992.94 2.115-2.169.697.696-2.811 2.867z"/>
                                     </svg>
                                 </button>
@@ -277,7 +277,7 @@
                                     <input type="search" bind:value={form.searchString} class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-md placeholder-gray-400 border border-solid border-neutral-300 bg-transparent bg-clip-padding px-7 py-[0.25rem] text-sm font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" 
                                         placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
                                     <span class="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 absolute left-0 fill-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 absolute left-0 fill-[#fcfcff]" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
                                         </svg>
                                     </span>
@@ -287,12 +287,12 @@
                     </div>
                     <div class="mx-4 bg-red-700 w-[92%] md:w-[97%] h-[40%] my-2 rounded-xl"></div>
                     <div class="flex justify-between p-4">
-                        <h4 class="font-medium text-black text-xl">Uploaded songs</h4>
+                        <h4 class="font-medium text-[#fcfcff] text-xl">Uploaded songs</h4>
                         <a href="" class="underline text-blue-900">See all</a>
                     </div>
                     <div class="flex flex-col h-full w-full pl-2 gap-2 md:pl-4 overflow-y-scroll ">
                         {#each tracks as track, i}
-                            <div on:pointerdown={()=>{getTrack(track)}} class="flex justify-start items-center w-full h-16 max-[375px]:gap-2 gap-10 md:gap-14 mt-1 bg-slate-500 rounded-xl">
+                            <div on:pointerdown={()=>{getTrack(track)}} class="flex justify-start items-center w-full h-16 max-[375px]:gap-2 gap-10 md:gap-14 mt-1 bg-black text-[#fcfcff] rounded-xl">
                                 <div class="flex justify-start items-center w-2/3 gap-2 md:gap-3">
                                     <span class="text-bold text-xl px-2">{i+1}</span>
                                     <div class="flex bg-red-700 h-14 w-14 rounded-xl md:rounded-2xl"></div>
@@ -301,16 +301,16 @@
                                         <span>🧑‍🎤artist</span>
                                     </div>
                                 </div>
-                                <span>{audios[i].duration}</span>
+                                <span class="w-1/12">{audios[i].duration}</span>
                                 <div class="flex justify-center max-[375px]:gap-2 gap-6 pr-4">
                                     <button on:click={() => likeAudio(track)} class="button">
-                                        <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <svg clip-rule="evenodd" class="svg fill-[#fcfcff]" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path d="{isLiked === true && tracks.length > 0 ? 'm12 5.72c-2.624-4.517-10-3.198-10 2.461 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-5.678-7.396-6.944-10-2.461z' 
                                             :'m7.234 3.004c-2.652 0-5.234 1.829-5.234 5.177 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-3.353-2.58-5.168-5.229-5.168-1.836 0-3.646.866-4.771 2.554-1.13-1.696-2.935-2.563-4.766-2.563zm0 1.5c1.99.001 3.202 1.353 4.155 2.7.14.198.368.316.611.317.243 0 .471-.117.612-.314.955-1.339 2.19-2.694 4.159-2.694 1.796 0 3.729 1.148 3.729 3.668 0 2.671-2.881 5.673-8.5 11.127-5.454-5.285-8.5-8.389-8.5-11.127 0-1.125.389-2.069 1.124-2.727.673-.604 1.625-.95 2.61-.95z'} " fill-rule="nonzero"/>
                                         </svg>
                                     </button>
                                     <button on:click={() => deleteTrack(track)} class="button">
-                                        <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <svg clip-rule="evenodd" class="svg fill-[#fcfcff]" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
                                         </svg>
                                     </button>
@@ -322,7 +322,7 @@
                 <div class="flex flex-col w-0 max-md:hidden md:w-[30%]">
                     <div class="relative">
                         <button class="button absolute pt-[22px]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="svg fill-black" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="svg fill-[#fcfcff]" viewBox="0 0 24 24">
                                 <path d="M12 14.5c0-3.033 2.081-5.574 4.891-6.291-.476-1.777-1.209-3.367-2.753-4.264-.644-.374-1.042-1.07-1.041-1.82v-.003c0-1.172-.939-2.122-2.097-2.122s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.667 2.712-1.985 11.715-6.862 13.306v1.749h12.816c-1.122-1.168-1.816-2.752-1.816-4.5zm-1-11.5c-.552 0-1-.448-1-1 0-.551.448-1 1-1s1 .449 1 1c0 .552-.448 1-1 1zm-3 18h6c0 1.598-1.392 3-2.971 3s-3.029-1.402-3.029-3zm10.5-11c-2.486 0-4.5 2.015-4.5 4.5s2.014 4.5 4.5 4.5c2.484 0 4.5-2.015 4.5-4.5s-2.016-4.5-4.5-4.5zm-.469 6.484l-1.688-1.637.695-.697.992.94 2.115-2.169.697.696-2.811 2.867z"/>
                             </svg>
                         </button>
@@ -331,18 +331,18 @@
                             <input type="search" bind:value={form.searchString} class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-md placeholder-gray-400 border border-solid border-neutral-300 bg-transparent bg-clip-padding px-7 py-[0.25rem] text-sm font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary" 
                                 placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
                             <span class="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 absolute left-0 fill-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 absolute left-0 fill-[#fcfcff]" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
                                 </svg>
                             </span>
                         </div>
                     </div>
                     <div class="flex justify-between p-4">
-                        <h4 class="font-medium text-black text-xl">Top Artist</h4>
+                        <h4 class="font-medium text-[#fcfcff] text-xl">Top Artist</h4>
                         <a href="" class="underline text-blue-900">See all</a>
                     </div>
                     <div class="flex flex-col h-[204px] overflow-y-scroll">
-                        <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-slate-500 rounded-xl">
+                        <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-black text-[#fcfcff] rounded-xl">
                             <div class="flex justify-start items-center w-2/3 pl-2">
                                 <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
                                 <div class="flex flex-col pl-1">
@@ -352,13 +352,13 @@
                             </div>
                             <div class="flex justify-center gap-6 pr-4">
                                 <button class="button">
-                                    <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg clip-rule="evenodd" class="svg fill-[#fcfcff]" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
                                     </svg>
                                 </button>
                             </div>
                         </div>
-                        <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-slate-500 rounded-xl">
+                        <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-black text-[#fcfcff] rounded-xl">
                             <div class="flex justify-start items-center w-2/3 pl-2">
                                 <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
                                 <div class="flex flex-col pl-1">
@@ -368,13 +368,13 @@
                             </div>
                             <div class="flex justify-center gap-6 pr-4">
                                 <button class="button">
-                                    <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg clip-rule="evenodd" class="svg fill-[#fcfcff]" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
                                     </svg>
                                 </button>
                             </div>
                         </div>
-                        <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-slate-500 rounded-xl">
+                        <div class="flex justify-start items-center w-full h-16 gap-14 mt-1 bg-black text-[#fcfcff] rounded-xl">
                             <div class="flex justify-start items-center w-2/3 pl-2">
                                 <div class="flex bg-red-700 h-14 w-14 rounded-xl"></div>
                                 <div class="flex flex-col pl-1">
@@ -384,14 +384,14 @@
                             </div>
                             <div class="flex justify-center gap-6 pr-4">
                                 <button class="button">
-                                    <svg clip-rule="evenodd" class="svg fill-black" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg clip-rule="evenodd" class="svg fill-[#fcfcff]" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/>
                                     </svg>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <h4 class="font-medium text-black text-xl p-2">Recent favourites</h4>
+                    <h4 class="font-medium text-[#fcfcff] text-xl p-2">Recent favourites</h4>
                     <div class="flex gap-2 justify-center px-2 overflow-hidden">
                         <div class="flex flex-col gap-2">
                             <div class="bg-red-600 h-36 w-36 rounded-xl"></div>
