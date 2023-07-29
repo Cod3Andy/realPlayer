@@ -16,10 +16,10 @@ export default {
           200: '#888883',
         }
       },
+      display: ["group-hover"],
       fontFamily: {
         rubik: ['Rubik'],
       },
-      display: ["group-hover"],
     },
   },
   plugins: [],

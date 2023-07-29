@@ -64,7 +64,7 @@
     @apply flex items-center justify-center rounded-full fill-white w-fit hover:scale-110
 }
 .big-button{
-    @apply flex items-center justify-end rounded-full bg-white p-2 hover:scale-105
+    @apply flex items-center justify-end rounded-full bg-white p-4 hover:scale-105
 }
 .side-button{
     @apply flex items-center justify-center rounded-full fill-white

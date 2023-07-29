@@ -229,18 +229,27 @@
                 </div>
             </div>
         </liked>
-        <homepage class="flex justify-center z-[1] absolute right-0 w-full rounded-lg {isNavHidden? '' : 'sm:w-11/12 sm:rounded-2xl'} h-full bg-gray-700"> 
+        <homepage class="flex justify-center z-[1] absolute right-0 w-full rounded-lg {isNavHidden? '' : 'sm:w-11/12 sm:rounded-2xl'} h-full bg-[#0d0c22]"> 
+            <img src="img/stars_background.png" alt="" class="hidden md:flex justify-center absolute z-0 h-full w-full">
             <div class="{isNavHidden === true && isHidden === true ? 'block' : 'hidden'}">
-                <button on:click={()=>{isNavHidden=!isNavHidden}} class="button bg-pink-800 p-3 mt-2 ml-2 opacity-95 {isNavHidden? 'block':'md:hidden'}">
+                <button on:click={()=>{isNavHidden=!isNavHidden}} class="button absolute left-0 bg-pink-800 p-3 mt-2 ml-2 opacity-95 {isNavHidden? 'block':'md:hidden'}">
                     <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                         <path d="M14.8 21.314c-1.185.44-2.463.686-3.8.686-6.075 0-11-4.924-11-11 0-6.074 4.925-11 11-11 6.074 0 10.999 4.926 10.999 11 0 .463-.032.918-.09 1.365.264.282.421.666.421 1.103v.024l.121-.005c.881 0 1.547.675 1.547 1.57l.002 5.839c0 1.914-1.213 3.104-3.167 3.104h-2.64c-2.07 0-2.76-1.406-3.094-2.084l-.299-.602zm6.033 1.686c1.418 0 2.167-.766 2.167-2.104l-.002-5.839c0-.386-.274-.57-.547-.57-.276 0-.549.185-.549.535v2.56c0 .175-.141.259-.281.259-.145 0-.291-.089-.291-.259v-4.114c0-.396-.288-.589-.577-.589-.293 0-.587.199-.587.589v3.884c0 .164-.131.245-.264.245s-.268-.084-.268-.25v-4.557c0-.391-.285-.59-.613-.59-.322 0-.572.193-.572.59l-.002 4.609c0 .183-.143.275-.285.275-.145 0-.287-.092-.287-.275v-3.872c0-.369-.284-.557-.565-.557-.277 0-.553.182-.553.557v4.794c0 .154-.111.234-.226.234-.084 0-.172-.042-.219-.128l-.785-1.444c-.152-.292-.432-.419-.709-.419-.41 0-.818.277-.818.711 0 .111.027.233.085.362.112.265 1.557 3.112 1.913 3.839.375.762.847 1.524 2.195 1.524h2.64zm.124-11.109c.027-.293.042-.59.042-.891 0-5.514-4.486-10-9.999-10-5.514 0-10 4.486-10 10s4.486 10 10 10c1.176 0 2.301-.209 3.348-.587l-.046-.092c-.718-1.433-1.066-2.127-1.125-2.265-.117-.255-.177-.518-.177-.781 0-.943.816-1.711 1.818-1.711.344 0 .664.089.939.254v-2.291c0-.888.668-1.557 1.553-1.557l.326.032c.258-.49.764-.802 1.385-.802.59 0 1.086.28 1.367.72.117-.027.238-.041.365-.041l.204.012zm-12.519 5.991c-1.989-.746-3.569-2.329-4.308-4.321l-.935.116c.821 2.409 2.721 4.311 5.126 5.139l.117-.934zm.238-1.903c-1.166-.547-2.107-1.49-2.654-2.656l-.954.121c.65 1.578 1.91 2.838 3.49 3.489l.118-.954zm2.324-8.645c2.025 0 3.667 1.641 3.667 3.666s-1.642 3.667-3.667 3.667c-2.026 0-3.667-1.642-3.667-3.667s1.641-3.666 3.667-3.666zm0 1c-1.47 0-2.667 1.196-2.667 2.666 0 1.471 1.197 2.667 2.667 2.667 1.471 0 2.667-1.196 2.667-2.667 0-1.47-1.196-2.666-2.667-2.666zm-.916 2.666c0 .506.41.917.916.917s.917-.411.917-.917-.411-.916-.917-.916-.916.41-.916.916zm6.849-2.443c-.65-1.577-1.912-2.838-3.49-3.488l-.119.954c1.166.546 2.107 1.488 2.656 2.654l.953-.12zm.924-.115c-.746-1.977-2.319-3.547-4.301-4.287l.119-.934c2.395.822 4.289 2.712 5.117 5.104l-.935.117z"/>
                     </svg>
                 </button>
+                <div class="flex justify-center items-center h-1/2 w-full p-5 ">
+                    <img src="img/stars_background.png" alt="" class="w-full h-full">
+                    <div class="bg-red-700 h-1/3 w-3/4 absolute md:hidden"></div>
+                </div>
+                <div class="flex justify-center items-center flex-col p-4  text-white w-full">
+                    <span class="font-bold truncate">{tracks.length > 0 ? tracks[songIndex].name : ''}</span>
+                    <span>🧑‍🎤artist</span>
+                </div>
             </div>
             <playlist class="{isHidden ? 'hidden': 'block'} flex w-full h-full bg-[#2d2e37] rounded-2xl z-0">
                 <div class="flex flex-col w-full md:w-[70%]">
                     <div class="flex justify-start items-center">
-                        <button on:click={()=>{isNavHidden=!isNavHidden, isHidden = !isHidden}} class="button bg-pink-800 p-3 mt-2 ml-2 opacity-95 {isNavHidden? 'block':'md:hidden'}">
+                        <button on:click={()=>{isNavHidden=!isNavHidden}} class="button bg-pink-800 p-3 mt-2 ml-2 opacity-95 {isNavHidden? 'block':'md:hidden'}">
                             <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                                 <path d="M14.8 21.314c-1.185.44-2.463.686-3.8.686-6.075 0-11-4.924-11-11 0-6.074 4.925-11 11-11 6.074 0 10.999 4.926 10.999 11 0 .463-.032.918-.09 1.365.264.282.421.666.421 1.103v.024l.121-.005c.881 0 1.547.675 1.547 1.57l.002 5.839c0 1.914-1.213 3.104-3.167 3.104h-2.64c-2.07 0-2.76-1.406-3.094-2.084l-.299-.602zm6.033 1.686c1.418 0 2.167-.766 2.167-2.104l-.002-5.839c0-.386-.274-.57-.547-.57-.276 0-.549.185-.549.535v2.56c0 .175-.141.259-.281.259-.145 0-.291-.089-.291-.259v-4.114c0-.396-.288-.589-.577-.589-.293 0-.587.199-.587.589v3.884c0 .164-.131.245-.264.245s-.268-.084-.268-.25v-4.557c0-.391-.285-.59-.613-.59-.322 0-.572.193-.572.59l-.002 4.609c0 .183-.143.275-.285.275-.145 0-.287-.092-.287-.275v-3.872c0-.369-.284-.557-.565-.557-.277 0-.553.182-.553.557v4.794c0 .154-.111.234-.226.234-.084 0-.172-.042-.219-.128l-.785-1.444c-.152-.292-.432-.419-.709-.419-.41 0-.818.277-.818.711 0 .111.027.233.085.362.112.265 1.557 3.112 1.913 3.839.375.762.847 1.524 2.195 1.524h2.64zm.124-11.109c.027-.293.042-.59.042-.891 0-5.514-4.486-10-9.999-10-5.514 0-10 4.486-10 10s4.486 10 10 10c1.176 0 2.301-.209 3.348-.587l-.046-.092c-.718-1.433-1.066-2.127-1.125-2.265-.117-.255-.177-.518-.177-.781 0-.943.816-1.711 1.818-1.711.344 0 .664.089.939.254v-2.291c0-.888.668-1.557 1.553-1.557l.326.032c.258-.49.764-.802 1.385-.802.59 0 1.086.28 1.367.72.117-.027.238-.041.365-.041l.204.012zm-12.519 5.991c-1.989-.746-3.569-2.329-4.308-4.321l-.935.116c.821 2.409 2.721 4.311 5.126 5.139l.117-.934zm.238-1.903c-1.166-.547-2.107-1.49-2.654-2.656l-.954.121c.65 1.578 1.91 2.838 3.49 3.489l.118-.954zm2.324-8.645c2.025 0 3.667 1.641 3.667 3.666s-1.642 3.667-3.667 3.667c-2.026 0-3.667-1.642-3.667-3.667s1.641-3.666 3.667-3.666zm0 1c-1.47 0-2.667 1.196-2.667 2.666 0 1.471 1.197 2.667 2.667 2.667 1.471 0 2.667-1.196 2.667-2.667 0-1.47-1.196-2.666-2.667-2.666zm-.916 2.666c0 .506.41.917.916.917s.917-.411.917-.917-.411-.916-.917-.916-.916.41-.916.916zm6.849-2.443c-.65-1.577-1.912-2.838-3.49-3.488l-.119.954c1.166.546 2.107 1.488 2.656 2.654l.953-.12zm.924-.115c-.746-1.977-2.319-3.547-4.301-4.287l.119-.934c2.395.822 4.289 2.712 5.117 5.104l-.935.117z"/>
                             </svg>
@@ -385,32 +394,34 @@
                     </div>
                 </div>
             </playlist>
-            <smediabar class="flex items-center justify-center md:hidden lg:justify-start absolute bottom-3 w-[95%] bg-black p-4 gap-4 md:gap-8 2xl:gap-28 rounded-full opacity-90">
+            <smediabar class="flex items-center justify-between md:hidden lg:justify-start absolute bottom-3 w-[95%] bg-[#0d0c22] p-4 gap-4 md:gap-8 2xl:gap-28 rounded-full opacity-90">
                 <button on:click={loopAudio} class="button">
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg {isLooped? 'fill-red-700' : ''}" viewBox="0 0 24 24">
                         <path d="M2 12c0 .999.381 1.902.989 2.604l-1.098.732-.587.392c-.814-1.025-1.304-2.318-1.304-3.728 0-3.313 2.687-6 6-6h9v-3l6 4-6 4v-3h-9c-2.206 0-4 1.794-4 4zm20.696-3.728l-.587.392-1.098.732c.608.702.989 1.605.989 2.604 0 2.206-1.795 4-4 4h-9v-3l-6 4 6 4v-3h9c3.313 0 6-2.687 6-6 0-1.41-.489-2.703-1.304-3.728z"/>
                     </svg>
                 </button>
-                <button on:pointerdown={prevAudio} class="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
-                        <path d="M4 2v20h-2v-20h2zm18 0l-16 10 16 10v-20z"/>
-                    </svg>
-                </button>
-                <button on:pointerdown={tracks.length > 0 ? playPauseAudio : null} class="big-button">
-                    <img src="{isPlaying ? 'img/pause.png' : 'img/play.png'}" alt="|>" class="big-svg shadow-[0px_0px_30px_5px_rgba(255,255,255,0.5)]">
-                </button>
-                <button on:pointerdown={nextAudio} class="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
-                        <path d="M20 22v-20h2v20h-2zm-18 0l16-10-16-10v20z"/>
-                    </svg>
-                </button>
+                <div class="flex justify-center gap-2">
+                    <button on:pointerdown={prevAudio} class="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
+                            <path d="M4 2v20h-2v-20h2zm18 0l-16 10 16 10v-20z"/>
+                        </svg>
+                    </button>
+                    <button on:pointerdown={tracks.length > 0 ? playPauseAudio : null} class="big-button">
+                        <img src="{isPlaying ? 'img/pause.png' : 'img/play.png'}" alt="|>" class="svg shadow-[0px_0px_30px_5px_rgba(255,255,255,0.5)]">
+                    </button>
+                    <button on:pointerdown={nextAudio} class="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
+                            <path d="M20 22v-20h2v20h-2zm-18 0l16-10-16-10v20z"/>
+                        </svg>
+                    </button>
+                </div>
                 <button class="button">
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
                         <path d="M2 7h-2v-2h2c3.49 0 5.48 1.221 6.822 2.854-.41.654-.754 1.312-1.055 1.939-1.087-1.643-2.633-2.793-5.767-2.793zm16 10c-3.084 0-4.604-1.147-5.679-2.786-.302.627-.647 1.284-1.06 1.937 1.327 1.629 3.291 2.849 6.739 2.849v3l6-4-6-4v3zm0-10v3l6-4-6-4v3c-5.834 0-7.436 3.482-8.85 6.556-1.343 2.921-2.504 5.444-7.15 5.444h-2v2h2c5.928 0 7.543-3.511 8.968-6.609 1.331-2.893 2.479-5.391 7.032-5.391z"/>
                     </svg>
                 </button>
             </smediabar>
-            <mediabar class="flex items-center justify-between max-md:hidden absolute bottom-3 w-[95%] bg-black p-4 gap-11 2xl:gap-28 rounded-full opacity-90">
+            <mediabar class="flex items-center justify-between max-md:hidden absolute bottom-3 w-[95%] bg-[#0d0c22] p-4 gap-11 2xl:gap-28 rounded-full opacity-90">
                 <div class="flex justify-center w-1/5 pl-2 gap-2">
                     <button on:pointerdown={prevAudio} class="button">
                         <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
@@ -418,7 +429,7 @@
                         </svg>
                     </button>
                     <button on:pointerdown={tracks.length > 0 ? playPauseAudio : null} class="big-button">
-                        <img src="{isPlaying ? 'img/pause.png' : 'img/play.png'}" alt="|>" class="big-svg shadow-[0px_0px_30px_5px_rgba(255,255,255,0.5)]">
+                        <img src="{isPlaying ? 'img/pause.png' : 'img/play.png'}" alt="|>" class="svg shadow-[0px_0px_30px_5px_rgba(255,255,255,0.5)]">
                     </button>
                     <button on:pointerdown={nextAudio} class="button">
                         <svg xmlns="http://www.w3.org/2000/svg" class="svg" viewBox="0 0 24 24">
@@ -477,7 +488,6 @@
                                 <path d="{isMuted === true || volume === 0 ? 'M18 23l-9.305-5.998.835-.651 7.47 4.815v-10.65l1-.781v13.265zm0-15.794l5.384-4.206.616.788-23.384 18.264-.616-.788 5.46-4.264h-2.46v-10h5.691l9.309-6v6.206zm-11.26 8.794l1.26-.984v-7.016h-4v8h2.74zm10.26-8.013v-5.153l-8 5.157v6.244l8-6.248z'
                                 : 'M15 23l-9.309-6h-5.691v-10h5.691l9.309-6v22zm-9-15.009v8.018l8 5.157v-18.332l-8 5.157zm14.228-4.219c2.327 1.989 3.772 4.942 3.772 8.229 0 3.288-1.445 6.241-3.77 8.229l-.708-.708c2.136-1.791 3.478-4.501 3.478-7.522s-1.342-5.731-3.478-7.522l.706-.706zm-2.929 2.929c1.521 1.257 2.476 3.167 2.476 5.299 0 2.132-.955 4.042-2.476 5.299l-.706-.706c1.331-1.063 2.182-2.729 2.182-4.591 0-1.863-.851-3.529-2.184-4.593l.708-.708zm-12.299 1.299h-4v8h4v-8z'}"/>
                             </svg>
-                            <i class="fas {volume > 0.7 && volume > 0 ? 'fa-volume-high' : 'fa-volume-low'} {volume === 0 ? 'fa-volume-xmark' : ''}"></i>
                         </button>
                         <div class="slider hidden group-hover:block absolute left-[-15px] bottom-[-5px]" style="width: {volume * 100}%">
                             <input type="range" min={0} max={1} step={0.01} bind:value={volume} on:input={(e)=>{ audio.volume = e.target.value}}>
