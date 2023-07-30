@@ -5,12 +5,12 @@
     let songIndex: number = 0;
     let audio: HTMLAudioElement;
     let isHidden: boolean = false;
-    let isNavHidden: boolean = true;
     let isLikedHidden: boolean = true;
     let isLoaded: boolean = false;
     let isLooped: boolean = false;
     let isLiked: boolean = false;
     let isMuted: boolean = false;
+    let isNavHidden: boolean = true;
     let isPlaying: boolean = false;
     let volume: number = 0.5;
     let duration: number;
@@ -18,12 +18,11 @@
 	let currTimeDisplay = "";
     let progress: number = 0;
     let trackTimer: number;
-    let searchText: string = '';
-    let songNumber: number = 0;
+    let searchString:string = '';
     let form = {
     searchString: ''
     };
-    let searchString = '';
+    let highlight:string = '';
 
     $: isPlaying ? updateProgress() : null;
 
@@ -35,7 +34,7 @@
     searchString = form.searchString;
     };
 
-    function handleFileInput(event: { target: { files: any; }; }, track: File){
+    function handleFileInput(event: { target: { files: any; }; }){
         isLoaded = !isLoaded;
         const files = event.target.files;
         tracks = [...tracks, ...files];
@@ -47,6 +46,7 @@
     function getTrack(track: Blob | MediaSource){
         audio.pause();
         audio = new Audio(URL.createObjectURL(track));
+        highlight = 'bg-red-600';
     };
 
     function playPauseAudio(){
@@ -248,7 +248,7 @@
                         <span>🧑‍🎤artist</span>
                     </div>
                     <div class="{tracks.length > 0 ? 'flex' : 'hidden'} justify-center items-center gap-1 w-5/6 md:hidden">
-                        <span class="text-white mr-3 w-[10%]">{currTimeDisplay}</span>
+                        <span class="text-white mr-3 w-5">{currTimeDisplay}</span>
                         <div class="relative w-[80%] rounded-md cursor-pointer h-2">
                             <div class="progress" style="width: {progress}%"></div>
                             <input type="range" class="seek-slider" min={0} max={100} step={1} bind:value={progress} on:input={setProgress}>
@@ -295,7 +295,7 @@
                     </div>
                     <div class="flex flex-col h-full w-full pl-2 gap-2 md:pl-4 overflow-y-scroll ">
                         {#each tracks as track, i}
-                            <div on:pointerdown={()=>{getTrack(track)}} class="flex justify-start items-center w-full h-16 max-[375px]:gap-0 gap-10 md:gap-14 mt-1 bg-black text-[#fcfcff] rounded-xl">
+                            <div on:pointerdown={()=>{getTrack(track)}} class="flex justify-start items-center w-full h-16 max-[375px]:gap-0 gap-10 md:gap-14 mt-1 {highlight} bg-black text-[#fcfcff] rounded-xl">
                                 <div class="flex justify-start items-center w-2/3 gap-2 md:gap-3">
                                     <span class="text-bold text-xl px-2 hidden sm:block">{i<9 ?'0':''}{i+1}</span>
                                     <div class="flex bg-red-700 h-14 w-14 rounded-xl md:rounded-2xl"></div>
